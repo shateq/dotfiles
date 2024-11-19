@@ -11,5 +11,7 @@ export PATH
 
 export LANG=en_US.UTF-8
 
+export GCM_CREDENTIAL_STORE=cache
+
 . "$HOME/.cargo/env"
 
