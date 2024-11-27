@@ -51,7 +51,7 @@ DISABLE_AUTO_TITLE="false"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-HIST_STAMPS="dd-mm-yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 HISTSIZE=800
 SAVEHIST=800
 
