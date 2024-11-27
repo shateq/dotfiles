@@ -1,10 +1,16 @@
 #!/usr/bin/env bash 
 
-alias 0=clear
-alias v=nvim
-# Woman pages! finally!i
-alias woman=man
+# quick
+alias \
+	0="clear" \
+	v="nvim" \
+	p="cd ~/Projects" \
+	mkd="mkdir -pv"
 
-alias zshrc='nvim ~/.zshrc'
+# config
+alias \
+	zshrc="nvim ~/.zshrc" \
+	zshenv="nvim ~/.zshenv" \
+	woman=man # Woman pages! finally
+
 alias fastfe='fastfetch --config ~/dotfiles/ref/fastfetch.json'
-
