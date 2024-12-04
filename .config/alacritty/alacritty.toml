@@ -1,14 +1,32 @@
 # $HOME/.config/alacritty/alacritty.toml
 # man 5 alacritty 
-
-[window]
-opacity = 0.95
-
-decorations = "Full" # "None"
-
-padding.x = 2
-padding.y = 4
-
 [font]
 size = 11.5
 
+[cursor]
+unfocused_hollow = true
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+[selection]
+save_to_clipboard = true
+
+[scrolling]
+multiplier = 10
+
+[window]
+dynamic_padding = false
+opacity = 0.95
+decorations = "Full" # "None"
+[window.padding]
+x = 14
+y = 4
+
+[keyboard]
+#command = "<string>" | { program = "<string>", args = ["<string>",] }
+bindings = [
+{ key = ")", mods = "Control|Shift", command = { program = "term-opacity", args = ["0"] } },
+{ key = "_", mods = "Control|Shift", command = { program = "term-opacity", args = ["1"] } },
+{ key = "+", mods = "Control|Shift", command = { program = "term-opacity", args = ["2"] } }
+]
