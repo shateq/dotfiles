@@ -5,6 +5,7 @@ alias \
 	0="clear" \
 	v="nvim" \
 	p="cd ~/Projects" \
+    dotf="cd ~/dotfiles" \
 	mkd="mkdir -pv"
 
 # config
@@ -13,4 +14,5 @@ alias \
 	zshenv="nvim ~/.zshenv" \
 	woman=man # Woman pages! finally
 
+alias ls='eza --color=always --icons=auto --no-user'
 alias fastfe='fastfetch --config ~/dotfiles/ref/fastfetch.json'
