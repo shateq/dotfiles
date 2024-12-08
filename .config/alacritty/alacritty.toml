@@ -1,6 +1,8 @@
 # $HOME/.config/alacritty/alacritty.toml
 # man 5 alacritty 
 [font]
+normal = { family = "Fira Code", style = "Regular" }
+italic = { family = "JetBrains Mono", style = "Italic" }
 size = 11.5
 
 [cursor]
@@ -12,16 +14,16 @@ blinking = "On"
 [selection]
 save_to_clipboard = true
 
-[scrolling]
-multiplier = 10
-
 [window]
 dynamic_padding = false
 opacity = 0.95
-decorations = "Full" # "None"
+decorations = "None" # "Full"
 [window.padding]
 x = 14
 y = 4
+
+[scrolling]
+multiplier = 10
 
 [keyboard]
 #command = "<string>" | { program = "<string>", args = ["<string>",] }
