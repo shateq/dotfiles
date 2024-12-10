@@ -1,8 +1,10 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+export ZSH_CUSTOM="$HOME/dotfiles/zshcustom"
+
 # It basically reads from ~/.oh-my-zsh/themes
-ZSH_THEME="example"
+ZSH_THEME="exemplary"
 
 plugins=(git fancy-ctrl-z sudo docker)
 # Standard plugins can be found in $ZSH/plugins/
@@ -47,3 +49,4 @@ export SAVEHIST=800
 
 # ALIASES
 source ~/dotfiles/scripts/aliases.sh
+source ~/dotfiles/scripts/dmenu-places
