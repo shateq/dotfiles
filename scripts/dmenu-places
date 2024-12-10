@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# In order to use it you have to source it inside your shell config file
+# Dmenu script that maps a freqently used directories provided in a file
+DIR="$HOME/dotfiles/ref"
+
+get_where () {
+    where=$(cat "$DIR/places" | dmenu -c -l 5 -p "Places")
+    echo $where
+}
+
+places () {
+    place="$HOME/$(get_where)"
+    cd $place
+}
