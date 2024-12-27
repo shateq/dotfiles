@@ -7,6 +7,7 @@ alias \
 	p="cd ~/Projects" \
     dotf="cd ~/dotfiles" \
 	mkd="mkdir -pv" \
+    rmd="rm -r" \
     ls="eza --color=always" \
     ll="eza --color=always --icons=always -lh --no-user" \
     lh="eza --color=always -lah --no-user" 
@@ -17,4 +18,7 @@ alias \
 	zshenv="nvim ~/.zshenv" \
 	woman=man # Woman pages! finally
 
-alias fastfe='fastfetch --config ~/dotfiles/ref/fastfetch.json'
+alias \
+    news='newsboat' \
+    fastfe='fastfetch --config ~/dotfiles/ref/fastfetch.json' \
+    conky-reload='killall -SIGUSR1 conky' 

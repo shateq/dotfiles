@@ -19,13 +19,10 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -46,6 +43,9 @@ export SAVEHIST=800
 # else
 #   export EDITOR='nvim'
 # fi
+
+# fzf integration (keybindings and completion)
+source <(fzf --zsh)
 
 # ALIASES
 source ~/dotfiles/scripts/aliases.sh
