@@ -1,5 +1,7 @@
 #!/bin/sh
 
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+
 alias \
 \
 0="clear" \
@@ -8,6 +10,7 @@ p="cd ~/Projects" \
 dotf="cd ~/dotfiles" \
 mkd="mkdir -pv" \
 rmd="rm -r" \
+sln="ln -s" \
 grep="grep --color=auto" \
 ls="eza --color=always" \
 ll="eza --color=always --icons=always -lh --no-user" \
