@@ -15,23 +15,14 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
-
 # bootstrap .zshrc to ~/.config/zsh/.zshrc
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-# add scripts to path
 export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$PATH"
-
-# history files
-export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
-export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
 
 # flutter use  
 export CHROME_BROWSER=chromium-browser
 # git
 export GCM_CREDENTIAL_STORE=cache
-
-. "$HOME/.cargo/env"
-. "$HOME/.deno/env"
 
 # moving other files and some other vars
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
@@ -43,10 +34,19 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
+export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
+export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
+export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
+# nvidia cache
+export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
 #export DATE=$(date "+%A, %B %e  %_I:%M%P")
 
 export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
 export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 #export MANPAGER="less -R --use-color -Dd+r -Du+b" # colored man pages
+
+. "$HOME/.deno/env"
+. "$CARGO_HOME/env"
