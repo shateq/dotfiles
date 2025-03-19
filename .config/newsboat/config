@@ -1,3 +1,5 @@
+#it is required to create $XDG_DATA_HOME/newsboat dir!
+
 #show-read-feeds yes
 auto-reload yes
 
