@@ -33,6 +33,8 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+# haskell
+export STACK_XDG=1
 
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"

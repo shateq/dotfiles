@@ -1,3 +1,7 @@
 lazy-lock.json
 *.log
 .history
+.zcomp*
+node_modules
+.python_version
+.zshrc.local
