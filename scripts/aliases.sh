@@ -23,5 +23,6 @@ du="du -h -d 1" \
 zshrc="nvim $XDG_CONFIG_HOME/zsh/.zshrc" \
 news="newsboat" \
 conky-reload="killall -SIGUSR1 conky" \
+sxhkd-reload="killall -SIGUSR1 sxhkd" \
 screen-half="xrandr --output HDMI-0 --brightness 0.5" \
 screen-full="xrandr --output HDMI-0 --brightness 1.0" \

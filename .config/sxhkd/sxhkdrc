@@ -1,0 +1,17 @@
+#[modifier + ] * [@] keysym
+#   command
+
+XF86Audio{Play,Pause}
+    playerctl play-pause
+
+XF86AudioStop
+    playerctl stop
+
+XF86Audio{Prev,Next}
+    playerctl {previous,next}
+
+{_,alt + }XF86Audio{Raise,Lower}Volume
+    amixer sset {Master,Capture} {5%+,5%-}
+
+XF86Audio{_,Mic}Mute
+    pactl set-{sink,source}-mute @DEFAULT_SINK@ toggle
