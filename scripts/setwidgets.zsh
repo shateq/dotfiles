@@ -24,3 +24,7 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^O' edit-command-line
