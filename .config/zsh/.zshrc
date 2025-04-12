@@ -7,6 +7,9 @@ source $SCRIPTS/dmenu-places
 # enable colors and change prompt
 autoload -U colors && colors
 
+#greeter
+echo -e "\n\e[40;97m $(date +"%d %b %Y") >\e[0m\e[100;97m> $(uptime -p) \e[0m"
+
 PROMPT="%K{cyan}%F{black} %T %K{blue} %n %f%k ; "
 RPROMPT="%F{magenta}%~%f"
 #PROMPT='\033[30;46m $(date +"%R") \033[0m\033[30;44M $(whoami) \033[0m ; '
@@ -73,6 +76,3 @@ bindkey "^l" forward-word
 bindkey "^x" backward-kill-word
 bindkey "^j" history-search-forward
 bindkey "^k" history-search-backward
-
-# pywal
-(cat ~/.cache/wal/sequences &)

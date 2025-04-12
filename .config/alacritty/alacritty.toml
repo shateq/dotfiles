@@ -1,5 +1,7 @@
-# $HOME/.config/alacritty/alacritty.toml
-# man 5 alacritty 
+# man 5 alacritty
+[general]
+import = ["~/.cache/wal/colors-alacritty.toml"]
+
 [font]
 normal = { family = "Fira Code", style = "Regular" }
 italic = { family = "JetBrains Mono", style = "Italic" }
@@ -7,28 +9,22 @@ size = 11.5
 
 [cursor]
 unfocused_hollow = true
-[cursor.style]
-shape = "Block"
-blinking = "On"
+style.blinking = "On"
 
 [selection]
 save_to_clipboard = true
 
 [window]
 dynamic_padding = false
-opacity = 0.95
+opacity = 0.9
 decorations = "None" # "Full"
+
 [window.padding]
 x = 14
-y = 4
+y = 7
+
+[mouse]
+hide_when_typing = true
 
 [scrolling]
 multiplier = 10
-
-[keyboard]
-#command = "<string>" | { program = "<string>", args = ["<string>",] }
-bindings = [
-{ key = ")", mods = "Control|Shift", command = { program = "term-opacity", args = ["0"] } },
-{ key = "_", mods = "Control|Shift", command = { program = "term-opacity", args = ["1"] } },
-{ key = "+", mods = "Control|Shift", command = { program = "term-opacity", args = ["2"] } }
-]
