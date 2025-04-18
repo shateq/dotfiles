@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+format=${1:-1}
+
+get_weather () {
+    #echo $format
+    curl -s "https://wttr.in/?format=$format"
+}
+
+get_weather
+
+case $BUTTON in
+	1) notify-send "button 1" ;;
+	3) notify-send "button 3" ;;
+	6) notify-send "button 6" ;;
+esac
