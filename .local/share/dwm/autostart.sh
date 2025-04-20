@@ -4,5 +4,10 @@ picom -b &
 
 nm-applet &
 
+setxkbmap pl &
+
 sxhkd &
 
+dwmblocks &
+
+~/.fehbg &

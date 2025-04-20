@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+get_weather () {
+    #echo $format
+    curl -s "https://wttr.in/?format=${1:-1}"
+}
+
+get_weather
