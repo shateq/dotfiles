@@ -23,12 +23,15 @@ export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$PATH"
 export CHROME_BROWSER=chromium-browser
 # git
 export GCM_CREDENTIAL_STORE=cache
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 
 # moving other files and some other vars
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME/docker-machine"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export GOPATH="$XDG_DATA_HOME/go"
+export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -46,8 +49,8 @@ export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
 #export DATE=$(date "+%A, %B %e  %_I:%M%P")
 
-export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
-export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
+#export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
+#export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
 #export MANPAGER="less -R --use-color -Dd+r -Du+b" # colored man pages
 
 . "$HOME/.deno/env"
