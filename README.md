@@ -3,13 +3,24 @@
 My configuration backup to be used with **GNU stow**. Man, I love symlinks so
 much.
 
+Tools covered:
+
+- zsh  
+- alacritty
+- nvim
+- i3
+- rofi
+- sxhkd
+- tmux
+- newsboat
+
 ### folders ignored by stow
 
 - `./scripts/` dir (which isn't copied), with my scripts.
 
 - `./ref/` dir which contains referenced material.
 
-## Using stow
+### Using stow
 
 Stow respects provided `.stow-local-ignore` file, as well as
 `.stow-global-ignore` (should be in ~/) plus the files [ignored by
@@ -23,6 +34,5 @@ $ stow .
 
 [manual](https://www.gnu.org/software/stow/manual/stow.html)
 
-## Secrets not supported
+## don't commit your secrets
 
-I'll see what I can think of to put them here.
