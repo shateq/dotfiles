@@ -23,14 +23,14 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
 require("lazy").setup({
-  spec = "plugin",
+  spec = "plugins",
   install = { colorscheme = { "catppuccin-mocha" } },
   checker = { enabled = false },
-  change_detection = { notify = true },
+  change_detection = { notify = false },
 })
 
 require("config")
-require("config.map")
+require("config.keymap")
 require("config.autocmd")
 --[[ 
 Plug('nvim-lualine/lualine.nvim') --statusline
