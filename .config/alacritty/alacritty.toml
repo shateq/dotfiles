@@ -3,8 +3,9 @@
 import = ["~/.cache/wal/colors-alacritty.toml"]
 
 [font]
-normal = { family = "Fira Code", style = "Regular" }
-italic = { family = "JetBrains Mono", style = "Italic" }
+normal = { family = "Iosevka Term", style = "Regular" }
+italic = { family = "Iosevka Term", style = "Italic" }
+bold = { family = "Iosevka Term", style = "Bold" }
 size = 11.5
 
 [cursor]

@@ -22,28 +22,17 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
-require("lazy").setup({
+require("lazy").setup {
   spec = "plugins",
   install = { colorscheme = { "catppuccin-mocha" } },
   checker = { enabled = false },
   change_detection = { notify = false },
-})
+}
 
-require("config")
-require("config.keymap")
-require("config.autocmd")
+require "config"
+require "config.keymap"
+require "config.autocmd"
 --[[ 
 Plug('nvim-lualine/lualine.nvim') --statusline
-Plug('nvim-tree/nvim-web-devicons') --pretty icons
-Plug('folke/which-key.nvim') --mappings popup
-Plug('romgrk/barbar.nvim') --bufferline
 Plug('goolord/alpha-nvim') --pretty startup
-Plug('mfussenegger/nvim-lint') --async linter
-Plug('nvim-tree/nvim-tree.lua') --file explorer
-Plug('windwp/nvim-autopairs') --autopairs 
-Plug('lewis6991/gitsigns.nvim') --git
-Plug('numToStr/Comment.nvim') --easier comments
-Plug('norcalli/nvim-colorizer.lua') --color highlight
-Plug('ibhagwan/fzf-lua') --fuzzy finder and grep
-Plug('numToStr/FTerm.nvim') --floating terminal
 --]]

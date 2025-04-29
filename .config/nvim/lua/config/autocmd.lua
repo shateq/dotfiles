@@ -1,9 +1,9 @@
 -- highlight text on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	pattern = "*",
-	callback = function()
-	vim.highlight.on_yank({ timeout = 300 })
-	end,
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank { timeout = 300 }
+  end,
 })
 
 -- Set local settings for terminal buffers
@@ -25,6 +25,6 @@ vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
   callback = function()
-    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+    vim.opt_local.formatoptions:remove { "c", "r", "o" }
   end,
 })

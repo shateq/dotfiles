@@ -1,7 +1,7 @@
 local opt = vim.opt
 
 --[[  OPTION  --]]
-opt.clipboard = 'unnamedplus' --system clipboard
+opt.clipboard = "unnamedplus" --system clipboard
 opt.history = 100
 
 -- Search
@@ -35,7 +35,7 @@ opt.smartindent = true
 
 -- Undo file
 opt.undofile = true
-opt.undodir = os.getenv("XDG_CACHE_HOME") .. "/vim/undodir"
+opt.undodir = os.getenv "XDG_CACHE_HOME" .. "/vim/undodir"
 opt.backup = false
 opt.swapfile = false
 opt.updatetime = 200 -- swap file related
