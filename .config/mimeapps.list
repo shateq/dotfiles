@@ -1,0 +1,28 @@
+[Default Applications]
+audio/mpeg=audio.desktop;
+video/x-matroska=mpv.desktop;
+video/mp4=mpv.desktop;
+application/x-desktop=editor.desktop;
+application/postscript=pdf.desktop;
+application/pdf=pdf.desktop;org.mozilla.firefox.desktop;
+application/json=editor.desktop;code.desktop;
+text/plain=editor.desktop;nvim.desktop;
+text/html=firefox.desktop;
+text/xml=firefox.desktop;
+image/gif=sxiv.desktop
+image/png=sxiv.desktop;
+image/jpeg=sxiv.desktop;
+image/heif=org.gnome.eog.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+
+[Added Associations]
+image/svg+xml=gimp.desktop;firefox.desktop;
+image/heif=org.gnome.eog.desktop;
+video/webm=vlc.desktop;
+#text/calendar=userapp-Thunderbird-3EC4V2.desktop;
+#x-scheme-handler/mailto=userapp-Thunderbird-LS2TV2.desktop;
+#x-scheme-handler/mid=userapp-Thunderbird-LS2TV2.desktop;
+#x-scheme-handler/webcal=userapp-Thunderbird-3EC4V2.desktop;
+#x-scheme-handler/webcals=userapp-Thunderbird-3EC4V2.desktop;
+

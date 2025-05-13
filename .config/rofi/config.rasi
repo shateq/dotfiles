@@ -2,24 +2,16 @@
 
 configuration {
 	modes: "window,drun,run,filebrowser";
-	show-icons: true;
-/*	icon-theme: ;*/
-    click-to-exit: true;
-/*	matching: "fuzzy"; */
-	auto-select: false;
-/*	normalize-match: false;*/
 	case-sensitive: false;
-/*	disable-history: true;*/
-/*	max-history-size: 25;*/
+    click-to-exit: true;
+	show-icons: true;
+/*	auto-select: true; */
+/*	matching: "fuzzy"; */
+/*	normalize-match: false;*/
 /*	font: "mono 12";*/
-/*	location: 0;*/
-/*	yoffset: 0;*/
-/*	xoffset: 0;*/
-/*	fixed-num-lines: true;*/
+	fixed-num-lines: false;
 /*	sort: false;*/
 /*	sorting-method: "normal";*/
-/*	cache-dir: ;*/
-/*	steal-focus: false;*/
 	window-thumbnail: false;
 	window-command: "wmctrl -i -R {window}";
 /*	drun-show-actions: false;*/
