@@ -3,8 +3,8 @@
 
 # default programs
 export EDITOR="nvim"
-export TERM="alacritty"
-export TERMINAL="alacritty"
+export TERM="kitty"
+export TERMINAL="kitty"
 #export MUSPLAYER="termusic"
 export BROWSER="librewolf"
 export BROWSER2="chromium-browser"
@@ -22,7 +22,7 @@ export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$PATH"
 # flutter use  
 export CHROME_BROWSER=chromium-browser
 # git
-export GCM_CREDENTIAL_STORE=cache
+export GCM_CREDENTIAL_STORE=gpg
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 
 # moving other files and some other vars
