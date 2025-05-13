@@ -3,23 +3,23 @@
   "modules": [
     "title",
     "datetime",
+    "uptime",
+    "memory",
     "break",
     "colors",
     "break",
     "os",
-    "de",
     "kernel",
     "packages",
-    "shell",
-    "terminal",
-    "break",
-    "theme",
-    "icons",
-    "display",
     "cpu",
     "gpu",
-    "memory",
-    "uptime",
-    "break"
+    "display",
+    "break",
+    "de",
+    "wm",
+    "cursor",
+    "shell",
+    "terminal",
+    "icons"
   ]
 }

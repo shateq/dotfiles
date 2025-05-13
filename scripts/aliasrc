@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 p=~/Projects
 dots=~/dotfiles
@@ -8,7 +8,7 @@ docs=~/Documents
 alias \
 yarn="yarn --use-yarnrc \"$XDG_CONFIG_HOME/yarn/config\"" \
 conky="conky --config=\"$XDG_CONFIG_HOME/conky/conkyrc\"" \
-fastfetch="fastfetch --config ~/dotfiles/ref/fastfetch.json" \
+fastfetch="fastfetch --config ~dots/scripts/fastfetch.json" \
 
 alias \
 0="clear" \
@@ -19,9 +19,9 @@ mkd="mkdir -pv" \
 rmd="rm -r" \
 sln="ln -s" \
 grep="grep --color=auto" \
-l="eza -l --color=always" \
-ll="eza --color=always --icons=always -lh --no-user" \
-la="eza --color=always -lah --no-user" \
+l="eza -l --color=always --group-directories-first" \
+ll="eza -lh --no-user --color=always --icons=always" \
+la="eza -lah --no-user --color=always --group-directories-first" \
 df="df -h" \
 du="du -h -d 1" \
 zshrc="nvim $XDG_CONFIG_HOME/zsh/.zshrc" \
