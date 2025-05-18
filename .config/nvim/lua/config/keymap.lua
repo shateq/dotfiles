@@ -20,7 +20,8 @@ end)
 
 map("n", "<leader><C-t>", ":tabnew<CR>")
 
-map("n", "<leader>pv", vim.cmd.Ex)
+map("n", "<leader>pv", "<cmd>Oil<CR>", { desc = "Open parent directory" })
+--map("n", "<leader>pv", vim.cmd.Ex)
 map("n", "<leader>%", "<cmd>source %<CR>") -- execute current file
 map("n", "<leader>s", ":%s//g<Left><Left>") --replace all
 map("n", "<leader>d", ":w ") --duplicate to new name
