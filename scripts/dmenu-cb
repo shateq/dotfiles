@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# original version from github: BreadOnPenguins/scripts
+# very cool 
+
+histfile="$HOME/.cache/dmenu-cb"
+placeholder="<NEWLINE>"
+
+highlight() {
+  clip=$(xclip -o -selection primary | xclip -i -f -selection clipboard 2>/dev/null) ;}
+
+output() {
+  clip=$(xclip -i -f -selection clipboard 2>/dev/null) ;}
+
+write() {
+  [ -f "$histfile" ] || dunstify "Creating $histfile"; touch $histfile
+  [ -z "$clip" ] && exit 0
+  multiline=$(echo "$clip" | sed ':a;N;$!ba;s/\n/'"$placeholder"'/g')
+  grep -Fxq "$multiline" "$histfile" || echo "$multiline" >> "$histfile"
+  notification=$(echo \"$multiline\") ;}
+
+sel() {
+  selection=$(tac "$histfile" | dmenu -b -l 5 -i -p "Clipboard history:")
+  [ -n "$selection" ] && echo "$selection" | sed "s/$placeholder/\n/g" | xclip -i -selection clipboard && notification="Copied to clipboard" ;}
+
+del() {
+  :> $histfile && notification="Emptied clipboard history" ;}
+
+case "$1" in
+  in) highlight && write ;;
+  pipe) output && write ;;
+  get) sel ;;
+  clear) del ;;
+  *) printf "$0 | File: $histfile\n\nin - copies primary selection to clipboard, and adds to history file\npipe - pipe commands to copy output to clipboard, and add to history file\nget - select from history file with dmenu and recopy!\nclear - clears file contents\n" ; exit 0 ;;
+esac
+
+[ -z "$notification" ] || dunstify "$notification"

@@ -1,19 +1,17 @@
-# scripts
+#: SCRIPTS
 SCRIPTS=$HOME/dotfiles/scripts
 [ -f "$SCRIPTS/aliasrc" ] && source $SCRIPTS/aliasrc
-source $SCRIPTS/dmenu-places
+[ -f "$SCRIPTS/dmenu-places" ] && source $SCRIPTS/dmenu-places
 
-# enable colors and change prompt
-autoload -U colors && colors
+autoload -U colors && colors #enable colors
 
-#greeter
-echo -e "\n\e[40;97m $(date +"%d %b %Y") >\e[0m\e[100;97m> $(uptime -p) \e[0m"
-
+#: GREETER
+# TODO change to bash/zsh builtins
+# echo -e "\n\e[40;97m $(date +"%d %b %Y") >\e[0m\e[100;97m> $(uptime -p) \e[0m"
 PROMPT="%K{cyan}%F{black} %T %K{blue} %n %f%k ; "
 RPROMPT="%F{magenta}%~%f"
-#PROMPT='\033[30;46m $(date +"%R") \033[0m\033[30;44M $(whoami) \033[0m ; '
 
-# main zsh settings
+#: MAIN ZSH
 setopt autocd # type a dir to cd
 setopt append_history inc_append_history share_history # better history
 setopt auto_menu menu_complete # autocmp first menu match
@@ -25,16 +23,14 @@ setopt extended_glob # match ~ # ^
 unsetopt prompt_sp # don't autoclean blanklines
 stty stop undef # disable accidental ctrl s
 
-# history
+#: HISTORY
+HISTFILE="$XDG_CACHE_HOME/zsh_history"
+HISTCONTROL=ignoreboth # duplicates and starting with space ignored
 HIST_STAMPS="dd.mm.yyyy"
 HISTSIZE=8000
 SAVEHIST=8000
-HISTFILE="$XDG_CACHE_HOME/zsh_history"
-HISTCONTROL=ignoreboth # duplicates and starting with space ignored
 
-#
-# plugin manager
-#
+#: PLUGINS
 ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
@@ -52,7 +48,7 @@ zi light joshskidmore/zsh-fzf-history-search
 zi ice lucid wait'3'
 zi light zdharma-continuum/fast-syntax-highlighting
 
-# completions
+#: COMPLETION
 zmodload zsh/complist
 autoload -U compinit && compinit
 
@@ -62,7 +58,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} ma=0\;33 # colorize cmp me
 # zstyle ':completion:*' file-list true # more detailed list
 zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
 
-# keybinds
+#: KEYBINDS
 # disable vi-mode (it sucks, open line in vim with ^n)
 bindkey -e
 

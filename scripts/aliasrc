@@ -3,7 +3,8 @@
 p=~/Projects
 dots=~/dotfiles
 docs=~/Documents
-: ~p ~dots ~docs
+pics=~/Pictures
+: ~p ~dots ~docs ~pics
 
 alias \
 yarn="yarn --use-yarnrc \"$XDG_CONFIG_HOME/yarn/config\"" \
@@ -19,11 +20,14 @@ mkd="mkdir -pv" \
 rmd="rm -r" \
 sln="ln -s" \
 grep="grep --color=auto" \
-l="eza -l --color=always --group-directories-first" \
-ll="eza -lh --no-user --color=always --icons=always" \
-la="eza -lah --no-user --color=always --group-directories-first" \
+cb="dmenu-cb" \
 df="df -h" \
 du="du -h -d 1" \
+l="eza -l --no-user --color=always --icons=always" \
+ll="eza -lh --color=always --group-directories-first" \
+lt="eza -Rh --color=always --group-directories-first" \
+ltt="eza -laR --color=always --group-directories-first" \
+la="eza -lah --no-user --color=always --group-directories-first" \
 zshrc="nvim $XDG_CONFIG_HOME/zsh/.zshrc" \
 conky-reload="killall -SIGUSR1 conky" \
 sxhkd-reload="killall -SIGUSR1 sxhkd" \
