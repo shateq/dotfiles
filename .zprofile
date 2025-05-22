@@ -27,6 +27,8 @@ export CHROME_BROWSER=$BROWSER2
 #: xserver
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
+export USERXSESSION="$XDG_CACHE_HOME/X11/xsession"
+export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
 #: haskell
 export STACK_XDG=1
 #: docker
