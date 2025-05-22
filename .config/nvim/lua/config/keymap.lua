@@ -18,7 +18,10 @@ map("n", "<leader>nn", function() --toggle relative vs absolute line numbers
   end
 end)
 
+-- tabs
 map("n", "<leader><C-t>", ":tabnew<CR>")
+map("n", "<leader><S-h>", ":tabprevious<CR>")
+map("n", "<leader><S-l>", ":tabnext<CR>")
 
 map("n", "<leader>pv", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 --map("n", "<leader>pv", vim.cmd.Ex)
