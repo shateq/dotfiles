@@ -14,6 +14,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
+
+export MPDCONF="$XDG_CONFIG_HOME/mpd/mpd.conf"
 #: programs
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
