@@ -28,6 +28,7 @@ ll="eza -lh --color=always --group-directories-first" \
 lt="eza -Rh --color=always --group-directories-first" \
 ltt="eza -laR --color=always --group-directories-first" \
 la="eza -lah --no-user --color=always --group-directories-first" \
+mpva="mpv --no-video" \
 zshrc="nvim $XDG_CONFIG_HOME/zsh/.zshrc" \
 conky-reload="killall -SIGUSR1 conky" \
 sxhkd-reload="killall -SIGUSR1 sxhkd" \

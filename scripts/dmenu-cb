@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # original version from github: BreadOnPenguins/scripts
+# released under GPL-3.0 License 
 # very cool 
 
 histfile="$HOME/.cache/dmenu-cb"
