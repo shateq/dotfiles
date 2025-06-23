@@ -17,7 +17,7 @@ setopt append_history inc_append_history share_history # better history
 setopt auto_menu menu_complete # autocmp first menu match
 setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
 setopt no_case_glob no_case_match # make cmp case insensitive
-setopt globdots # include dotfiles
+#setopt globdots # include dotfiles
 setopt extended_glob # match ~ # ^
 #setopt interactive_comments # allow comments in shell
 unsetopt prompt_sp # don't autoclean blanklines
@@ -60,7 +60,7 @@ zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ exp
 
 #: KEYBINDS
 # disable vi-mode (it sucks, open line in vim with ^n)
-bindkey -e
+#bindkey -e
 
 # uses EDITOR env var
 autoload edit-command-line
@@ -93,10 +93,12 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-bindkey "^a" beginning-of-line
-bindkey "^e" end-of-line
-bindkey "^h" backward-word
-bindkey "^l" forward-word
-bindkey "^x" backward-kill-word
-bindkey "^j" history-search-forward
-bindkey "^k" history-search-backward
+#bindkey "^a" beginning-of-line
+#bindkey "^e" end-of-line
+#bindkey "^h" backward-word
+#bindkey "^l" forward-word
+#bindkey "^x" backward-kill-word
+#bindkey "^j" history-search-forward
+#bindkey "^k" history-search-backward
+
+[ -f "$SCRIPTS/fzf-jump.zsh" ] && source $SCRIPTS/fzf-jump.zsh
