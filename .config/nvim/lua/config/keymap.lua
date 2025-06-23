@@ -1,15 +1,18 @@
 --[[  KEYMAP  --]]
+-- leader semantics:
+-- t (toggle) p (project) l (lsp)
 local function map(m, k, v)
   vim.keymap.set(m, k, v, { noremap = true, silent = true })
 end
 
-map("n", "<leader>cc", function()
-  --  if not vim.opt.colorcolumn == "" then
-  vim.opt.colorcolumn = ""
-  --  end
+map("n", "<leader>tc", function()
+  if not vim.opt.colorcolumn then
+    vim.opt.colorcolumn = "80"
+  end
 end)
 
-map("n", "<leader>nn", function() --toggle relative vs absolute line numbers
+-- on relative numbers on turn on only line numbers, then switch
+map("n", "<leader>tn", function() 
   if vim.wo.relativenumber then
     vim.wo.relativenumber = false
     vim.wo.number = true
@@ -23,6 +26,7 @@ map("n", "<leader><C-t>", ":tabnew<CR>")
 map("n", "<leader><S-h>", ":tabprevious<CR>")
 map("n", "<leader><S-l>", ":tabnext<CR>")
 
+map("n", "<leader>h", ":noh<CR>")
 map("n", "<leader>pv", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 --map("n", "<leader>pv", vim.cmd.Ex)
 map("n", "<leader>%", "<cmd>source %<CR>") -- execute current file

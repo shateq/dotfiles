@@ -2,23 +2,23 @@ return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.8",
   dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    require("telescope").setup {}
-
-    local builtin = require "telescope.builtin"
-    vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
-    vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-    vim.keymap.set("n", "<leader>pws", function()
-      local word = vim.fn.expand "<cword>"
-      builtin.grep_string { search = word }
-    end)
-    vim.keymap.set("n", "<leader>pWs", function()
-      local word = vim.fn.expand "<cWORD>"
-      builtin.grep_string { search = word }
-    end)
-    vim.keymap.set("n", "<leader>ps", function()
-      builtin.grep_string { search = vim.fn.input "Grep > " }
-    end)
-    vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
-  end,
+  keys = {
+		{ "<C-f>",      "<cmd>Telescope find_files<CR>", desc = "List current working directory" },
+	    { "<C-p>",      "<cmd>Telescope git_files<CR>",  desc = "List git repo files" },
+	    { "<leader>fr", "<cmd>Telescope registers<CR>",  desc = "Pull registers" },
+	    { "<leader>f?", "<cmd>Telescope keymaps<CR>",    desc = "List keymaps" },
+	    { "<leader>fh", "<cmd>Telescope help_tags<CR>",  desc = "Browse help pages" },
+		{ "<leader>fws", (function() 
+		    local word = vim.fn.expand "<cword>"
+		    require("telescope.builtin").grep_string { search = word }
+		  end),
+		  desc = "Lookup current word-string in cwd",
+		},
+		{ "<leader>fWs", (function() 
+		    local word = vim.fn.expand "<cWORD>"
+		    require("telescope.builtin").grep_string { search = word }
+		  end),
+		  desc = "Lookup current word-string in cwd",
+		},
+  },
 }

@@ -1,5 +1,4 @@
 --  [[ my minimal config --]]
-
 vim.g.mapleader = ","
 --vim.g.maplocalleader = ","
 
@@ -32,7 +31,3 @@ require("lazy").setup {
 require "config"
 require "config.keymap"
 require "config.autocmd"
---[[ 
-Plug('nvim-lualine/lualine.nvim') --statusline
-Plug('goolord/alpha-nvim') --pretty startup
---]]

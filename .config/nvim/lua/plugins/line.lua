@@ -2,7 +2,6 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
-    theme = "16color",
     always_show_tabline = false,
     sections = {
       --lualine_x = {"filetype","encoding"},
