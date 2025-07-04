@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+alias \
+yarn="yarn --use-yarnrc \"$XDG_CONFIG_HOME/yarn/config\"" \
+conky="conky --config=\"$XDG_CONFIG_HOME/conky/conkyrc\"" \
+fastfetch="fastfetch --config $HOME/.local/bin/scripts/fastfetch.json" \
+zshrc="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc" \
+conky-reload="killall -SIGUSR1 conky" \
+sxhkd-reload="killall -SIGUSR1 sxhkd" \
+screen-half="xrandr --output HDMI-0 --brightness 0.5" \
+screen-full="xrandr --output HDMI-0 --brightness 1.0" \
+
+alias \
+0="clear" \
+v="$EDITOR" \
+mkd="mkdir -pv" \
+rmd="rm -r" \
+sln="ln -s" \
+chomd="chmod" \
+mpva="mpv --no-video" \
+cb="dmenu-cb" \
+l="eza --color=always --icons=always --group-directories-first" \
+ll="ls -lA --color=always --group-directories-first" \
+lt="ls -Rh --color=always --group-directories-first" \
+
+# Dmenu script that maps a freqently used directories provided in a file
+places_store="$HOME/.local/bin/scripts/dmenu-places.store"
+
+places_get_where() {
+    where=$(cat "$places_store" | dmenu -c -l 5 -p "Places")
+    echo $where
+}
+
+places() {
+    place="$HOME/$(places_get_where)"
+    cd $place
+}

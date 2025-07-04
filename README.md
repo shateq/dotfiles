@@ -1,12 +1,14 @@
 # ~/dotfiles
 
-My configuration backup to be used with **GNU stow**. Man, I love symlinks so
-much.
+My configuration backup to be used with **GNU stow**. Man, I love symlinks so much. 
+I'd rather stick to defaults than to invent a new wheel so there won't be no revolutionary
+keybinds in here. Just something that builds on top of the original things.
 
 Tools covered:
 
 - zsh  
 - alacritty
+- kitty
 - nvim
 - i3
 - rofi
@@ -14,11 +16,11 @@ Tools covered:
 - tmux
 - newsboat
 
-### folders ignored by stow
+## Other folders
 
-- `./scripts/` dir (which isn't copied), with my scripts.
+- `.local/bin` - contains scripts adjusting my workflow
 
-- `./ref/` dir which contains referenced material.
+- `.local/share` - has got desktop-specific and app-specific config reference
 
 ### Using stow
 

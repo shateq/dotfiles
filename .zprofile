@@ -1,14 +1,15 @@
 #!/bin/sh
 
 #: this file runs on login, it's for env variables only
-export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$XDG_DATA_HOME/JetBrains/Toolbox/scripts:$PATH"
+export PATH="$PATH:$HOME/.local/bin:$(find ~/.local/bin -type d | paste -sd ':' -):$XDG_DATA_HOME/JetBrains/Toolbox/scripts"
 
 #: default programs
 export EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER="librewolf"
-export BROWSER2="brave-browser"
+export BROWSER3="brave-browser"
 #export DISPLAY=:0 # useful for some scripts
+
 #: xdg spec
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
