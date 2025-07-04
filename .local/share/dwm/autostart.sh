@@ -9,3 +9,5 @@ sxhkd &
 picom -b &
 
 ~/.fehbg &
+
+mpd &
