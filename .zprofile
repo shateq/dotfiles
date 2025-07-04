@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #: this file runs on login, it's for env variables only
-export PATH="$PATH:$HOME/.local/bin:$(find ~/.local/bin -type d | paste -sd ':' -):$XDG_DATA_HOME/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$(find -L ~/.local/bin -type d | paste -sd ':' -):$XDG_DATA_HOME/JetBrains/Toolbox/scripts"
 
 #: default programs
 export EDITOR="nvim"
