@@ -2,6 +2,7 @@
 
 LICENSE
 README.*
+install-dots
 
 \.git
 \.gitignore

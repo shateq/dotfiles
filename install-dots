@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+#: installs my dotfiles
+#: dependencies:
+#: git stow curl
+dots_root="$(dirname $BASH_SOURCE)"
+cd $dots_root
+pwd -P
+sleep 1
+
+echo "Fetching git submodules, errors have to be solved manually"
+git submodule init
+git submodule update
+
+echo "Creating a symlink farm from the root dir (printed above)"
+stow .
+
+echo "done"
