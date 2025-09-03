@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+#: linux xkb layout switcher
+colemak_opt="pl colemak"
+
+case "$(printf "pl-qwerty\nus-qwerty\npl-colemak" | dmenu -n -c -p "Keyboard layout")" in
+	pl-qwerty) setxkbmap pl && echo "PL programmer" ;;
+	us-qwerty) setxkbmap us && echo "US qwerty" ;;
+	pl-colemak) setxkbmap $colemak_opt && echo "PL Colemak" ;;
+	*) exit 1 ;;
+esac
