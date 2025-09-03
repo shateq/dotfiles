@@ -87,5 +87,5 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 #bindkey "^a" beginning-of-line bindkey "^e" end-of-line bindkey "^h" backward-word bindkey "^l" forward-word bindkey "^x" backward-kill-word bindkey "^j" history-search-forward bindkey "^k" history-search-backward
 
-[ -f "$SCRIPTS/fzf-jump.zsh" ] && source $SCRIPTS/fzf-jump.zsh
-[ -f "$SCRIPTS/dirs.zsh" ] && source $SCRIPTS/dirs.zsh
+[ -f "$XDG_CONFIG_HOME/zsh/fzf-jump.zsh" ] && source $XDG_CONFIG_HOME/zsh/fzf-jump.zsh
+[ -f "$XDG_CONFIG_HOME/zsh/dirs.zsh" ] && source $XDG_CONFIG_HOME/zsh/dirs.zsh
