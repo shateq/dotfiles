@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Audio player
-Exec=/usr/bin/mpg123 %f
+Exec=/usr/bin/mpv %f

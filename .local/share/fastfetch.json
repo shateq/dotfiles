@@ -19,7 +19,9 @@
     "wm",
     "cursor",
     "shell",
+    "editor",
     "terminal",
+    "terminalfont",
     "icons"
   ]
 }
