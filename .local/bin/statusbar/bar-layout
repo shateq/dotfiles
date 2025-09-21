@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#signal 6
+
+setxkbmap -query | sed 's/.*: *//' | tail -1
+
+switch_layout(){
+    dmenu-layout
+    kill -40 $(pidof dwmblocks)
+}
+
+case $BLOCK_BUTTON in 
+    1) switch_layout ;;
+esac

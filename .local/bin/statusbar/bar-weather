@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#signal 3
 
 get_weather () {
     #echo $format

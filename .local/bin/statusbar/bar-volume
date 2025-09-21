@@ -1,27 +1,35 @@
 #!/usr/bin/env bash
-
-# Prints out the volume percentage
+# signal 5
 
 VOLUME_ON_ICON=''
 VOLUME_MUTED_ICON=''
 
-get_volume(){
-        isMuted=$(pactl get-sink-mute @DEFAULT_SINK@)
-        volume=$(pactl get-sink-volume @DEFAULT_SINK@ | tail -n 2 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' | head -n 1)
+mute(){
+    isMuted=$(pactl get-sink-mute @DEFAULT_SINK@)
 
-        if [ "${isMuted}" = 'Mute: yes' ]
-        then
-            echo "$VOLUME_MUTED_ICON $volume%"
-        else
-            echo "$VOLUME_ON_ICON $volume%"
-        fi
+    if [ "${isMuted}" = 'Mute: yes' ]; then
+	notify-send "🔊 Master volume UNMUTED"
+    else
+	notify-send "🔇 Master volume MUTED"
+    fi
+
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+}
+
+get_volume(){
+    isMuted=$(pactl get-sink-mute @DEFAULT_SINK@)
+    volume=$(pactl get-sink-volume @DEFAULT_SINK@ | tail -n 2 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' | head -n 1)
+
+    if [ "${isMuted}" = 'Mute: yes' ]; then
+	echo "$VOLUME_MUTED_ICON $volume%"
+    else
+	echo "$VOLUME_ON_ICON $volume%"
+    fi
 }
 
 get_volume
 
 case "$BLOCK_BUTTON" in 
-	1) pkill -RTMIN+5 dwmblocks ;; 
-    2) notify-send "yo" ;;
-#it wont run anything other than pkill i want pactl set-sink-mute @DEFAULT_SINK@ toggle ;
-    6) notify-send "$BLOCK_BUTTON" ;;
+    1) kill -39 $(pidof dwmblocks);; 
+    2) mute; kill -39 $(pidof dwmblocks);;
 esac
