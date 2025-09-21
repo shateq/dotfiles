@@ -18,10 +18,13 @@ rmd="rm -r" \
 sln="ln -s" \
 chomd="chmod" \
 mpva="mpv --no-video" \
-cb="dmenu-cb" \
+copy="dmenu-cb" \
 l="eza --color=always --icons=always --group-directories-first" \
 ll="ls -lA --color=always --group-directories-first" \
 lt="ls -Rh --color=always --group-directories-first" \
+
+alias \
+lsbc="lsblk | bat -p -l conf"
 
 no_blank() {
     xset s off
