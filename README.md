@@ -1,26 +1,25 @@
 # ~/dotfiles
 
 My configuration backup to be used with **GNU stow**. Man, I love symlinks so much. 
-I'd rather stick to defaults than to invent a new wheel so there won't be no revolutionary
-keybinds in here. Just something that builds on top of the original things.
-
-Tools covered:
-
-- zsh  
-- alacritty
-- kitty
-- nvim
-- i3
-- rofi
-- sxhkd
-- tmux
-- newsboat
+I'd rather stick to defaults than to invent a new wheel.
 
 ## Other folders
 
-- `.local/bin` - contains scripts adjusting my workflow
+- `.local/bin` - contains scripts for my workflow
 
 - `.local/share` - has got desktop-specific and app-specific config reference
+
+## My dwm setup
+
+- `sxhkd` for universal keyboard Media buttons
+- uses `dwmblocks-async` for the statusbar
+- patches can be found in [my dwm repo](https://github.com/shateq/dwm)
+- `rofi` app launcher and `dmenu` for script input
+- `zathura`, `mpv` and `nsxiv` for any kind of media
+
+- NO SCREENSHOT SOLUTION right now
+- no `Xresources` support 
+- I've never used no scratchpad
 
 ### Using stow
 
@@ -37,4 +36,3 @@ $ stow .
 [manual](https://www.gnu.org/software/stow/manual/stow.html)
 
 ## don't commit your secrets
-
