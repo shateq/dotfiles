@@ -28,6 +28,7 @@ get_volume(){
 }
 
 get_volume
+exit 0
 
 case "$BLOCK_BUTTON" in 
     1) kill -39 $(pidof dwmblocks);; 

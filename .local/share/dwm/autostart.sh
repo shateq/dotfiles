@@ -8,6 +8,6 @@ picom -b &
 
 #mpd &
 
-dwmblocks &
+dwmblocks 2>/tmp/dwmblocks.log &
 
 setxkbmap pl &

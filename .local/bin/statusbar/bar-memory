@@ -6,6 +6,7 @@ get_memory(){
 }
 
 get_memory
+exit 0
 
 case $BLOCK_BUTTON in 
 	1) kill -35 $(pidof dwmblocks);;

@@ -12,6 +12,7 @@ screen-full="xrandr --output HDMI-0 --brightness 1.0" \
 
 alias \
 0="clear" \
+g="git" \
 v="$EDITOR" \
 mkd="mkdir -pv" \
 rmd="rm -r" \

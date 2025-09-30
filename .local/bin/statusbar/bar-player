@@ -9,6 +9,7 @@ stopped_icon="⏹️"
 status=$(playerctl status 2>&1)
 
 [ "$status" != "No players found" ] && song="$(playerctl metadata --format="{{title}} - {{artist}}")"
+exit 0
 
 case "$status" in
     "Paused") echo "$paused_icon $song" ;;
