@@ -34,11 +34,9 @@ ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-zinit snippet OMZL::git.zsh
-zi snippet OMZP::git
+zi snippet OMZL::git.zsh
 #zi cdclear -q #forget completions
 zi snippet OMZP::sudo
-#zi snippet OMZP::fancy-ctrl-z #BROKEN
 
 zi ice lucid wait'0'
 zi light joshskidmore/zsh-fzf-history-search
