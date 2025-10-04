@@ -48,11 +48,23 @@ export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+#: history
 export HISTFILE="$XDG_CACHE_HOME/bash_history"
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
 #: nvidia cache
 export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
+
+#: colored man pages
+export LESS="R --use-color -Dd+r -Du+b"
+
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 . "$HOME/.deno/env"
 . "$CARGO_HOME/env"

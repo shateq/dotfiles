@@ -7,8 +7,6 @@ fastfetch="fastfetch --config $XDG_DATA_HOME/fastfetch.json" \
 zshrc="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc" \
 conky-reload="killall -SIGUSR1 conky" \
 sxhkd-reload="killall -SIGUSR1 sxhkd" \
-screen-half="xrandr --output HDMI-0 --brightness 0.5" \
-screen-full="xrandr --output HDMI-0 --brightness 1.0" \
 
 alias \
 0="clear" \
@@ -20,9 +18,9 @@ sln="ln -s" \
 chomd="chmod" \
 mpva="mpv --no-video" \
 copy="dmenu-cb" \
-l="eza --color=always --icons=always --group-directories-first" \
-ll="ls -lA --color=always --group-directories-first" \
-lt="ls -Rh --color=always --group-directories-first" \
+ls="ls -pt --color=always --group-directories-first" \
+ll="ls -AhlX --color=always --group-directories-first" \
+lt="ls -RU --color=always --group-directories-first" \
 
 alias \
 lsbc="lsblk | bat -p -l conf"
