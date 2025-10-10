@@ -8,11 +8,21 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:monospace 8
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
 font pango:DejaVu Sans Mono 8
 
 # Keyboard layout
 exec --no-startup-id setxkbmap -layout pl
+# Start XDG autostart .desktop files using dex.
+#exec --no-startup-id dex-autostart --autostart --environment i3
+exec_always --no-startup-id picom -b
+exec --no-startup-id ~/.fehbg
+exec --no-startup-id xrdb ~/.cache/wal/colors.Xresources
+# sxhkd for Media buttons
+#exec --no-startup-id sxhkd &
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/Pictures/Backgrounds/saturnus_png.png
 
 #gaps
 gaps inner 8
@@ -33,10 +43,6 @@ title_align right
 
 # KEYBIND
 include keybind.conf
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-# Show the first scratchpad window
-bindsym $mod+minus scratchpad show
 
 # Start i3bar to display a workspace bar 
 bar {
@@ -49,9 +55,6 @@ bar {
         #tray_output primary
         #colors { }
 }
-
-# AUTOSTART and applications
-include autostart.conf
 
 assign [class="Spotify"] 2
 assign [class="vesktop"] 2
