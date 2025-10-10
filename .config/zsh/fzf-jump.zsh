@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 fzf-dirs() {
-  [[ -z "$BUFFER" ]] && zle accept-line && cd "$(tree -dfiL 3 $HOME | fzf --style minimal)"
+  [[ -z "$BUFFER" ]] && zle accept-line && cd "$(tree -dfiL 3 $HOME | fzf)"
 }
 
 zle -N fzf-dirs
