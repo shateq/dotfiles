@@ -1,0 +1,31 @@
+[user]
+	name = Szymon Wieczorek
+    email = shateq21@gmail.com
+[alias]
+    a = add
+    br = branch
+    cl = clone
+	cm = commit -m
+	d = diff
+    l = log --pretty=oneline -n 20 --graph --abbrev-commit  
+    s = status -s
+	sm = submodule
+	st = status
+[core]
+    compression = 7
+    fsync = none
+    whitespace = error
+	autocrlf = false
+[apply]
+	whitespace = fix
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = main
+[url "git@github.com:"]
+    insteadOf = "gh:"
+[url "git@codeberg.org:"]
+    insteadOf = "cb:"
+[url "git@gitlab.com:"]
+    insteadOf = "gl:"
