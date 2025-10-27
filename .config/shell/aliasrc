@@ -6,6 +6,7 @@ conky="conky --config=\"$XDG_CONFIG_HOME/conky/conkyrc\"" \
 zshrc="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc" \
 conky-reload="killall -SIGUSR1 conky" \
 sxhkd-reload="killall -SIGUSR1 sxhkd" \
+waybar-reload="killall -SIGUSR2 waybar" \
 
 alias \
 0="clear" \
@@ -22,7 +23,8 @@ ll="ls -AhlX --color=always --group-directories-first" \
 lt="ls -RU --color=always --group-directories-first" \
 
 alias \
-lsbc="lsblk | bat -p -l conf"
+lsbc="lsblk | bat -p -l conf" \
+qrshow="qrencode -o - -t UTF8" \
 
 no_blank() {
     xset s off

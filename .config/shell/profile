@@ -56,7 +56,7 @@ export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
 export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
 
 #: colored man pages
-export LESS="R --use-color -Dd+r -Du+b"
+export LESS="-R --use-color"
 
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
