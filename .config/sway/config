@@ -11,6 +11,9 @@ set $term kitty
 set $menu wofi --show drun | xargs swaymsg exec --
 set $dmenu wofi --show run | xargs swaymsg exec -- 
 
+set $o_laptop LVDS-1
+set $o_hdmi HDMI-A-1
+
 # BIT IMPORTANT 
 include /etc/sway/config.d/*
 
@@ -23,12 +26,16 @@ exec swayidle -w \
 assign [class="Spotify"] 3
 assign [class="Vesktop"] 3
 assign [class="steam"] 2
-
 for_window [app_id="pavucontrol"] floating enable
 
 # Output configuration
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output * bg ~/Pictures/Bg/sparrow_lunch.jpg fill
+output $o_laptop bg ~/Pictures/Bg/sparrow_lunch.jpg fill
+output $o_hdmi bg ~/Pictures/Bg/retired_cinephile.jpg stretch
+
+# Laptop lid
+#bindswitch --reload --locked lid:on output $o_hdmi disable
+#bindswitch --reload --locked lid:off output $o_hdmi enable
 
 # Input layouts
 input * {
@@ -46,6 +53,8 @@ gaps inner 4
 gaps horizontal 8
 
 floating_modifier $mod normal
+focus_follows_mouse always
+
 # Launch binds
 bindsym {
     $mod+Return exec $term
@@ -56,8 +65,8 @@ bindsym {
     # lock the screen
     $mod+$alt+q exec 'playerctl pause; swaylock -f -c 282828 -k'
     # reload config file
-    $mod+Shift+r reload
-    $mod+Shift+BackSpace exec swaymsg exit
+    $mod+$alt+r reload
+    $mod+$alt+BackSpace exec swaymsg exit
 }
 
 # Script binds
@@ -67,7 +76,12 @@ bindsym {
     $mod+Shift+m mark --toggle m
 
     #$mod+b bar mode toggle
-    $mod+Shift+b exec 'killall -SIGUSR1 waybar'
+    $mod+$Shift+b exec 'killall -SIGUSR1 waybar'
+
+    # toggle big screen output
+    $mod+$Shift+d output $o_hdmi toggle
+    $mod+a focus output $o_laptop
+    $mod+Shift+a focus output $o_hdmi
 }
 
 # Motion binds 
@@ -85,15 +99,13 @@ bindsym {
 
 # Windows binds
 bindsym {
-    $mod+a focus parent
+    $mod+Shift+p focus parent
     $mod+f fullscreen
 
     $mod+minus splitv
     $mod+equal splith
 
-    $mod+Shift+t layout default
     # current container
-    $mod+s layout stacking
     $mod+w layout tabbed
     $mod+t layout toggle split
 
@@ -102,7 +114,6 @@ bindsym {
     $mod+x focus mode_toggle
 
     $mod+Shift+z move scratchpad
-    # If there are multiple scratchpad windows, this command cycles through them.
     $mod+z scratchpad show
 }
 
