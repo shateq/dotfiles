@@ -4,6 +4,7 @@ LICENSE
 README.*
 install-dots
 
+\.etc
 \.git
 \.gitignore
 \.gitmodules
