@@ -1,27 +1,26 @@
 [Default Applications]
 audio/mpeg=audio.desktop;
-video/x-matroska=mpv.desktop;
-video/mp4=mpv.desktop;
+video/x-matroska=video.desktop;
+video/mp4=video.desktop;
 application/x-desktop=editor.desktop;
 application/postscript=pdf.desktop;
-application/pdf=pdf.desktop;org.mozilla.firefox.desktop;
+application/pdf=pdf.desktop;librewolf.desktop;
 application/json=editor.desktop;code.desktop;
 text/plain=editor.desktop;nvim.desktop;
-text/html=firefox.desktop;
-text/xml=firefox.desktop;
-image/gif=sxiv.desktop
-image/png=sxiv.desktop;
-image/jpeg=sxiv.desktop;
-image/heif=org.gnome.eog.desktop;
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
+text/html=librewolf.desktop;
+text/xml=librewolf.desktop;
+image/gif=image.desktop
+image/png=image.desktop;
+image/jpeg=image.desktop;
+x-scheme-handler/http=librewolf.desktop;
+x-scheme-handler/https=librewolf.desktop;
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/mailto=brave-browser.desktop
 
 [Added Associations]
-image/svg+xml=gimp.desktop;firefox.desktop;
-image/heif=org.gnome.eog.desktop;
-video/webm=vlc.desktop;
+image/svg+xml=gimp.desktop;librewolf.desktop;
+image/heif=image.desktop;
+video/webm=video.desktop;
 #text/calendar=userapp-Thunderbird-3EC4V2.desktop;
 #x-scheme-handler/mailto=userapp-Thunderbird-LS2TV2.desktop;
 #x-scheme-handler/mid=userapp-Thunderbird-LS2TV2.desktop;
