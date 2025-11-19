@@ -76,10 +76,10 @@ bindsym {
     $mod+Shift+m mark --toggle m
 
     #$mod+b bar mode toggle
-    $mod+$Shift+b exec 'killall -SIGUSR1 waybar'
+    $mod+Shift+b exec 'killall -SIGUSR1 waybar'
 
     # toggle big screen output
-    $mod+$Shift+d output $o_hdmi toggle
+    $mod+Shift+d output $o_hdmi toggle
     $mod+a focus output $o_laptop
     $mod+Shift+a focus output $o_hdmi
 }

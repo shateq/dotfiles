@@ -1,32 +1,17 @@
-#: SCRIPTS
-SCRIPTS=$HOME/.local/bin/scripts
-[ -f "$SCRIPTS/aliasrc" ] && source $SCRIPTS/aliasrc
+[ -f "$XDG_CONFIG_HOME/shell/aliasrc" ] && source $XDG_CONFIG_HOME/shell/aliasrc
+[ -f "$XDG_CONFIG_HOME/zsh/fzf-jump.zsh" ] && source $XDG_CONFIG_HOME/zsh/fzf-jump.zsh
+[ -f "$XDG_CONFIG_HOME/zsh/dirs.zsh" ] && source $XDG_CONFIG_HOME/zsh/dirs.zsh
 
-autoload -U colors && colors #enable colors
-
-#: GREETER
-# TODO change to bash/zsh builtins
-# echo -e "\n\e[40;97m $(date +"%d %b %Y") >\e[0m\e[100;97m> $(uptime -p) \e[0m"
-PROMPT="%K{cyan}%F{black} %T %K{blue} %n %f%k ; "
-RPROMPT="%F{magenta}%~%f"
-
-#: MAIN ZSH
-setopt autocd # type a dir to cd
-setopt append_history share_history # better history
-setopt auto_menu menu_complete # autocmp first menu match
-setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
-setopt no_case_glob no_case_match # make cmp case insensitive
-#setopt globdots # include dotfiles
-setopt extended_glob # match ~ # ^
-unsetopt prompt_sp # don't autoclean blanklines
-stty stop undef # disable accidental ctrl s
-
-#: HISTORY
-HISTFILE="$XDG_CACHE_HOME/zsh_history"
-HISTCONTROL=ignoreboth # duplicates and starting with space ignored
-HIST_STAMPS="dd.mm.yyyy"
-HISTSIZE=8000
-SAVEHIST=8000
+autoload -U colors && colors # enable colors
+#: colored man pages
+export LESS="-R"
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;36m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
 
 #: PLUGINS
 ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
@@ -35,23 +20,68 @@ ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 zi snippet OMZL::git.zsh
-#zi cdclear -q #forget completions
 zi snippet OMZP::sudo
+#zi cdclear -q #forget completions
 
 zi ice lucid wait'0'
 zi light joshskidmore/zsh-fzf-history-search
-
 zi ice lucid wait'3'
 zi light zdharma-continuum/fast-syntax-highlighting
+#
+#: MAIN ZSH
+#
+setopt autocd # type a dir to cd
+setopt extended_glob # match ~ # ^
+setopt noglobdots
+setopt longlistjobs # report PID on suspend
+setopt noshwordsplit # zsh style word splitting
+#setopt nohup # dont kill background processess
+unsetopt prompt_sp # don't autoclean blanklines
+stty stop undef # disable accidental ctrl s
 
-#: COMPLETION
+#: HISTORY
+setopt append_history 
+setopt share_history
+setopt histignorespace
+
+HISTFILE="$XDG_CACHE_HOME/zsh_history"
+HISTCONTROL=ignoreboth # duplicates and starting with space ignored
+HIST_STAMPS="dd.mm.yyyy"
+HISTSIZE=8000
+SAVEHIST=8000
+
+#: Completion
+setopt hash_list_all # on cmp ensures correction but may be slow
+setopt auto_param_slash # slash/ for dirs in cmp menu
+setopt auto_menu menu_complete # autocmp first menu match
+setopt completeinword
+setopt no_case_glob no_case_match # case insensitive cmp
+
 zmodload zsh/complist
 autoload -U compinit && compinit
 
-zstyle ':completion:*' menu select
-#zstyle ':completion:*' special-dirs true # force . and .. to show in cmp menu
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} ma=0\;33 # colorize cmp menu
+zstyle ':completion:*' menu select=3 # only use menu if more than 3 opts
+zstyle ':completion:*' special-dirs .. # .. will show 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # match uppercase from lowercase
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # colorize cmp menu
 zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
+##zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}' # format on cmp menu
+# complete manual by their section
+zstyle ':completion:*:manuals'    separate-sections true
+zstyle ':completion:*:manuals.*'  insert-sections   true
+zstyle ':completion:*:man:*'      menu yes select
+zstyle ':completion:*'            use-cache yes
+zstyle ':completion:*:complete:*' cache-path "$HOME/.cache"
+# complete cd -<tab> with menu, dirs integration
+zstyle ':completion:*:*cd:*:directory-stack' menu yes select
+
+#: Correction
+setopt correct # correction nyae
+zstyle ':completion:*:correct:*' max-errors 1 # only correct if 1 typo
+
+#: GREETER
+PROMPT="%F{black}%K{blue} %n %K{cyan} %2d %f%k %(?..%F{red}%? )%f%k; "
+RPROMPT="%F{magenta}%T%f"
 
 #: KEYBINDS
 # disable vi-mode (it sucks, open line in vim with ^n)
@@ -61,9 +91,6 @@ bindkey -e
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^n' edit-command-line
-
-# start nnn in current dir
-#openn3() { nnn <$TTY zle redisplay } zle -N openn3 bindkey '^f' openn3
 
 # plugin wont work without vi-mode, so I turn vi-mode off and paste plugin here
 fancy-ctrl-z () {
@@ -78,12 +105,15 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-
-#bindkey "^a" beginning-of-line bindkey "^e" end-of-line bindkey "^h" backward-word bindkey "^l" forward-word bindkey "^x" backward-kill-word bindkey "^j" history-search-forward bindkey "^k" history-search-backward
-
-[ -f "$XDG_CONFIG_HOME/zsh/fzf-jump.zsh" ] && source $XDG_CONFIG_HOME/zsh/fzf-jump.zsh
-[ -f "$XDG_CONFIG_HOME/zsh/dirs.zsh" ] && source $XDG_CONFIG_HOME/zsh/dirs.zsh
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'l' vi-forward-char
+bindkey "\e0" beginning-of-line
+bindkey "\e$" end-of-line 
+bindkey "\e." insert-last-word
+bindkey "\eb" backward-word 
+bindkey "\ew" forward-word 
+bindkey "\ed" backward-kill-word 
+bindkey "\ej" history-search-forward 
+bindkey "\ek" history-search-backward
