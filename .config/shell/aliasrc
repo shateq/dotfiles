@@ -15,32 +15,15 @@ v="$EDITOR" \
 mkd="mkdir -pv" \
 rmd="rm -r" \
 sln="ln -s" \
-chomd="chmod" \
-mpva="mpv --no-video" \
-copy="dmenu-cb" \
 ls="ls -pt --color=always --group-directories-first" \
 ll="ls -AhlX --color=always --group-directories-first" \
 lt="ls -RU --color=always --group-directories-first" \
-
-alias \
 lsbc="lsblk | bat -p -l conf" \
 qrshow="qrencode -o - -t UTF8" \
+mpva="mpv --no-video" \
+copy="dmenu-cb" \
 
-no_blank() {
-    xset s off
-    xset s noblank
-    xset -dpms 
-}
-
-# Dmenu script that maps a freqently used directories provided in a file
-places_store="$XDG_DATA_HOME/dmenu-places.store"
-
-places_get_where() {
-    where=$(cat "$places_store" | dmenu -c -l 5 -p "Places")
-    echo $where
-}
-
-places() {
-    place="$HOME/$(places_get_where)"
-    cd $place
-}
+alias -g \
+G="| grep" \
+L="| less" \
+E="| nvim -" \
