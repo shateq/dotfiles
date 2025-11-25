@@ -86,7 +86,6 @@ RPROMPT="%F{magenta}%T%f"
 #: KEYBINDS
 # disable vi-mode (it sucks, open line in vim with ^n)
 bindkey -e
-
 # uses EDITOR env var
 autoload edit-command-line
 zle -N edit-command-line
@@ -104,6 +103,15 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+#: yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
