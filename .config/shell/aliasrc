@@ -7,7 +7,7 @@ zshrc="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc" \
 conky-reload="killall -SIGUSR1 conky" \
 sxhkd-reload="killall -SIGUSR1 sxhkd" \
 waybar-reload="killall -SIGUSR2 waybar" \
-
+#: gnu
 alias \
 0="clear" \
 g="git" \
@@ -15,15 +15,16 @@ v="$EDITOR" \
 mkd="mkdir -pv" \
 rmd="rm -r" \
 sln="ln -s" \
-ls="ls -pt --color=always --group-directories-first" \
-ll="ls -AhlX --color=always --group-directories-first" \
-lt="ls -RU --color=always --group-directories-first" \
 lsbc="lsblk | bat -p -l conf" \
-qrshow="qrencode -o - -t UTF8" \
-mpva="mpv --no-video" \
-copy="dmenu-cb" \
-
+ls="ls -pt --color=always" \
+ll="ls -AhlX --color=always" \
+lt="ls -RU --color=always" \
+#: pipes
 alias -g \
 G="| grep" \
 L="| less" \
 E="| nvim -" \
+
+jq-format() {
+    jq '.' $1 | sponge $1
+}

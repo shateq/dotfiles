@@ -3,11 +3,13 @@
 setopt auto_pushd
 setopt pushd_ignore_dups
 
+d=~/Documents
+h=~/Desktop
 p=~/Projects
-dots=~/dotfiles
-docs=~/Documents
+dots=~/.dotfiles
 pics=~/Pictures
-: ~p ~dots ~docs ~pics
+notes=~/Documents/Notes/WAT
+: ~d ~h ~p ~dots ~pics ~notes
 
 alias d="dirs -v" 
 
