@@ -113,6 +113,8 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+bindkey -s '^t' 'tmux a || tmux new^M'
+
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'h' vi-backward-char
