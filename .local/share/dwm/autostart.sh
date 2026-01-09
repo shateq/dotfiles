@@ -2,7 +2,7 @@
 
 sxhkd &
 
-picom -b &
+#picom -b &
 
 ~/.fehbg &
 

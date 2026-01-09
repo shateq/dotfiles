@@ -56,6 +56,7 @@ export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
 #: nvidia cache
 export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export QMK_HOME="$XDG_DATA_HOME/qmk_firmware"
 
 . "$HOME/.deno/env"
 . "$CARGO_HOME/env"
