@@ -26,7 +26,7 @@ E="| nvim -" \
 G="| grep" \
 L="| less" \
 #: linux only
-[[ command -v "xdg-open" ]] && alias open="xdg-open"
+command -v "xdg-open" >/dev/null && alias open="xdg-open"
 
 json-format() {
     jq '.' $1 | sponge $1
