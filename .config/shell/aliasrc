@@ -21,10 +21,13 @@ ll="ls -AhlX --color=always" \
 lt="ls -RU --color=always" \
 #: pipes
 alias -g \
+A="| awk" \
+E="| nvim -" \
 G="| grep" \
 L="| less" \
-E="| nvim -" \
+#: linux only
+[[ command -v "xdg-open" ]] && alias open="xdg-open"
 
-jq-format() {
+json-format() {
     jq '.' $1 | sponge $1
 }

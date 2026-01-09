@@ -16,8 +16,8 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $resize_mode "Resize/Move mode"
-set $workspace_mode "Workspaces mode"
+set $resize_mode "Window mode"
+set $workspace_mode "Workspace mode"
 
 # BIT IMPORTANT 
 include /etc/sway/config.d/*
@@ -27,6 +27,9 @@ exec swayidle -w \
          timeout 300 'swaylock -f -c 282828 -k' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'playerctl pause; swaylock -f -c 282828 -k'
+
+# Clipboard manager
+exec wl-paste --type text --watch cliphist store
 
 assign [class="Spotify"] 3
 assign [class="Vesktop"] 3
@@ -62,7 +65,7 @@ bindsym --locked {
     #pactl raises volume above 100% (bad)
     #XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
     #XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    XF86AudioMute exec pactl et-sink-mute @DEFAULT_SINK@ toggle
     XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SINK@ toggle
 }
 
@@ -80,9 +83,10 @@ bindsym {
     $mod+space exec $menu
     $mod+d exec $dmenu
     $mod+Shift+q kill
-# this aint working!!
-    $mod+c exec wl-copy
-    $mod+v exec wl-paste
+
+    $mod+c exec wtype -M ctrl -P Insert -p Insert -m ctrl
+    $mod+v exec wtype -M shift -P Insert -p Insert -m shift
+    $mod+$alt+v exec cliphist list | wofi --dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
 #: screenshot
     Print exec grim -g $(slurp -d) "$HOME/Pictures/Screenshots/$(date +'%s_grim.png')"
 #: mark
@@ -107,12 +111,10 @@ bindsym {
 #: Windows binds
     $mod+Shift+v splitv
     $mod+Shift+s splith
-    $mod+Shift+p focus parent
     $mod+f fullscreen
     #: current container
     $mod+t layout toggle split
     $mod+Shift+t layout tabbed
-
     #: focus tiling area or floating area
     $mod+x focus mode_toggle
     $mod+Shift+x floating toggle
@@ -153,29 +155,29 @@ mode $workspace_mode {
         n workspace next
         p workspace prev
 
-        1 workspace number 1
-        2 workspace number 2
-        3 workspace number 3
-        4 workspace number 4
-        5 workspace number 5
-        6 workspace number 6
-        7 workspace number 7
-        8 workspace number 8
-        9 workspace number 9
+        $alt+1 workspace number 1
+        $alt+2 workspace number 2
+        $alt+3 workspace number 3
+        $alt+4 workspace number 4
+        $alt+5 workspace number 5
+        $alt+6 workspace number 6
+        $alt+7 workspace number 7
+        $alt+8 workspace number 8
+        $alt+9 workspace number 9
         #: move and switch
-        Shift+1 move container to workspace number 1; workspace number 1
-        Shift+2 move container to workspace number 2; workspace number 2
-        Shift+3 move container to workspace number 3; workspace number 3
-        Shift+4 move container to workspace number 4; workspace number 4
-        Shift+5 move container to workspace number 5; workspace number 5
-        Shift+6 move container to workspace number 6; workspace number 6
-        Shift+7 move container to workspace number 7; workspace number 7
-        Shift+8 move container to workspace number 8; workspace number 8
-        Shift+9 move container to workspace number 9; workspace number 9
+        1 move container to workspace number 1; workspace number 1
+        2 move container to workspace number 2; workspace number 2
+        3 move container to workspace number 3; workspace number 3
+        4 move container to workspace number 4; workspace number 4
+        5 move container to workspace number 5; workspace number 5
+        6 move container to workspace number 6; workspace number 6
+        7 move container to workspace number 7; workspace number 7
+        8 move container to workspace number 8; workspace number 8
+        9 move container to workspace number 9; workspace number 9
     }
 }
 
-mode $resize_mod {
+mode $resize_mode {
     bindsym {
         Escape mode "default"
         $mod+r mode "default"
