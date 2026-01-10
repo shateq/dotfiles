@@ -3,6 +3,9 @@ set -q MY_ABBRS_INITIALIZED; and return # guard
 abbr -a d cdh
 abbr -a -- g "git"
 abbr -a -- v "$EDITOR"
+
+abbr -a mkd mkdir
+abbr -a rmd rm -r
 abbr -a -- tarls 'tar -tvf'
 abbr -a -- untar 'tar -xv'
 
