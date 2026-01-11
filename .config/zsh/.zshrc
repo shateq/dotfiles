@@ -1,17 +1,8 @@
-[ -f "$XDG_CONFIG_HOME/shell/aliasrc" ] && source $XDG_CONFIG_HOME/shell/aliasrc
-[ -f "$XDG_CONFIG_HOME/zsh/fzf-jump.zsh" ] && source $XDG_CONFIG_HOME/zsh/fzf-jump.zsh
-[ -f "$XDG_CONFIG_HOME/zsh/dirs.zsh" ] && source $XDG_CONFIG_HOME/zsh/dirs.zsh
-
 autoload -U colors && colors # enable colors
-#: colored man pages
-export LESS="-R"
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;36m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
+
+#: GREETER
+PROMPT="%F{black}%K{blue} %n %K{cyan} %2d %f%k %(?..%F{red}%? )%f%k; "
+RPROMPT="%F{magenta}%T%f"
 
 #: PLUGINS
 ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
@@ -22,14 +13,10 @@ source "${ZINIT_HOME}/zinit.zsh"
 zi snippet OMZL::git.zsh
 zi snippet OMZP::sudo
 #zi cdclear -q #forget completions
-
-zi ice lucid wait'0'
-zi light joshskidmore/zsh-fzf-history-search
 zi ice lucid wait'3'
 zi light zdharma-continuum/fast-syntax-highlighting
-#
+
 #: MAIN ZSH
-#
 setopt autocd # type a dir to cd
 setopt extended_glob # match ~ # ^
 setopt noglobdots
@@ -43,12 +30,6 @@ stty stop undef # disable accidental ctrl s
 setopt append_history 
 setopt share_history
 setopt histignorespace
-
-HISTFILE="$XDG_CACHE_HOME/zsh_history"
-HISTCONTROL=ignoreboth # duplicates and starting with space ignored
-HIST_STAMPS="dd.mm.yyyy"
-HISTSIZE=8000
-SAVEHIST=8000
 
 #: Completion
 setopt hash_list_all # on cmp ensures correction but may be slow
@@ -79,10 +60,6 @@ zstyle ':completion:*:*cd:*:directory-stack' menu yes select
 setopt correct # correction nyae
 zstyle ':completion:*:correct:*' max-errors 1 # only correct if 1 typo
 
-#: GREETER
-PROMPT="%F{black}%K{blue} %n %K{cyan} %2d %f%k %(?..%F{red}%? )%f%k; "
-RPROMPT="%F{magenta}%T%f"
-
 #: KEYBINDS
 # disable vi-mode (it sucks, open line in vim with ^n)
 bindkey -e
@@ -104,6 +81,22 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
+#: fzf integration
+if command -v fd &>/dev/null; then
+    export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow --max-depth 4"
+    export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --max-depth 4"
+fi
+
+if command -v fzf &>/dev/null; then
+    if [[ -e "$ZDOTDIR/fzf_init.zsh" ]]; then
+        source "$ZDOTDIR/fzf_init.zsh" 
+        bindkey '^j' fzf-file-widget
+        bindkey '^g' fzf-cd-widget
+    else
+        fzf --zsh >"$ZDOTDIR/fzf_init.zsh"
+    fi
+fi
+
 #: yazi
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -113,17 +106,12 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-bindkey -s '^t' 'tmux a || tmux new^M'
+bindkey -s '^t' "tmux a || tmux new^M"
 
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'l' vi-forward-char
-bindkey "\e0" beginning-of-line
-bindkey "\e$" end-of-line 
-bindkey "\e." insert-last-word
-bindkey "\eb" backward-word 
-bindkey "\ew" forward-word 
-bindkey "\ed" backward-kill-word 
-bindkey "\ej" history-search-forward 
-bindkey "\ek" history-search-backward
+
+[ -f "$XDG_CONFIG_HOME/shell/aliasrc" ] && source $XDG_CONFIG_HOME/shell/aliasrc
+[ -f "$XDG_CONFIG_HOME/zsh/dirs.zsh" ] && source $XDG_CONFIG_HOME/zsh/dirs.zsh
