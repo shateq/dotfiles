@@ -1,8 +1,21 @@
 autoload -U colors && colors # enable colors
 
+
 #: GREETER
 PROMPT="%F{black}%K{blue} %n %K{cyan} %2d %f%k %(?..%F{red}%? )%f%k; "
 RPROMPT="%F{magenta}%T%f"
+
+#: ssh-agent
+# start if not running
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+        ssh-agent > ~/.ssh/agent-env
+    fi
+
+    if [ -f ~/.ssh/agent-env ]; then
+        source ~/.ssh/agent-env > /dev/null
+    fi
+fi
 
 #: PLUGINS
 ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
