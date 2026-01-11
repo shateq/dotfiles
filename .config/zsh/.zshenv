@@ -1,6 +1,4 @@
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export HISTFILE="$XDG_CACHE_HOME/zsh_history"
-export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 
 HISTCONTROL=ignoreboth # duplicates and starting with space ignored
 HIST_STAMPS="dd.mm.yyyy"

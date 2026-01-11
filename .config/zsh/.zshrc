@@ -27,6 +27,7 @@ unsetopt prompt_sp # don't autoclean blanklines
 stty stop undef # disable accidental ctrl s
 
 #: HISTORY
+export HISTFILE="$XDG_CACHE_HOME/zsh_history"
 setopt append_history 
 setopt share_history
 setopt histignorespace
@@ -88,12 +89,12 @@ if command -v fd &>/dev/null; then
 fi
 
 if command -v fzf &>/dev/null; then
-    if [[ -e "$ZDOTDIR/fzf_init.zsh" ]]; then
-        source "$ZDOTDIR/fzf_init.zsh" 
+    if [[ -e "$XDG_DATA_HOME/fzf_init.zsh" ]]; then
+        source "$XDG_DATA_HOME/fzf_init.zsh" 
         bindkey '^j' fzf-file-widget
         bindkey '^g' fzf-cd-widget
     else
-        fzf --zsh >"$ZDOTDIR/fzf_init.zsh"
+        fzf --zsh >"$XDG_DATA_HOME/fzf_init.zsh"
     fi
 fi
 
