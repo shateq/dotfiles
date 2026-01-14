@@ -5,8 +5,8 @@ export PATH="$PATH:$(find -L ~/.local/bin -type d | paste -sd ':' -):$XDG_DATA_H
 
 export EDITOR="nvim"
 export TERMINAL="kitty"
-export BROWSER="librewolf"
-export BROWSER2="brave-browser"
+export BROWSER="brave"
+export BROWSER2="librewolf"
 #export DISPLAY=:0 # useful for some scripts
 
 #: xdg spec
