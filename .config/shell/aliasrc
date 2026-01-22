@@ -3,10 +3,10 @@
 alias \
 yarn="yarn --use-yarnrc \"$XDG_CONFIG_HOME/yarn/config\"" \
 conky="conky --config=\"$XDG_CONFIG_HOME/conky/conkyrc\"" \
-zshrc="$EDITOR $XDG_CONFIG_HOME/zsh/.zshrc" \
 conky-reload="killall -SIGUSR1 conky" \
 sxhkd-reload="killall -SIGUSR1 sxhkd" \
 waybar-reload="killall -SIGUSR2 waybar" \
+
 #: gnu
 alias \
 0="clear" \
@@ -26,7 +26,7 @@ E="| nvim -" \
 G="| grep" \
 L="| less" \
 #: linux only
-command -v "xdg-open" >/dev/null && alias open="xdg-open"
+command -v "xdg-open" >/dev/null && alias open="setsid xdg-open"
 
 json-format() {
     jq '.' $1 | sponge $1

@@ -14,6 +14,9 @@ abbr -a rmd rm -r
 abbr -a sln "ln -s" 
 abbr -a -- tarls "tar -tvf"
 abbr -a -- untar "tar -xv'"
+
+
+#abbr -a ghg "cd $(ghq root)/$(ghq list | fzf)"
 command -v "xdg-open" >/dev/null && abbr -a "open" "xdg-open"
 
 abbr -a --position anywhere A "| awk"

@@ -11,6 +11,7 @@
     s = status -s
 	sm = submodule
 	st = status
+    origin = remote get-url origin
 [core]
     compression = 7
     fsync = none
@@ -20,9 +21,12 @@
 	whitespace = fix
 [color]
     ui = auto
-
 [init]
     defaultBranch = main
+
+[ghq]
+    root = ~/Projects/ghq
+
 [url "git@github.com:"]
     insteadOf = "gh:"
 [url "git@codeberg.org:"]
