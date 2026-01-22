@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+bt_on() {
+    seq="power on\nagent on\ndefault-agent\nscan on"
+    echo -e $seq | bluetoothctl
+    exit 0
+}
+
+bt_off() {
+    seq="agent off\npower off\n"
+    echo -e $seq | bluetoothctl
+    exit 0
+}
+
+case "$1" in
+    "on")  bt_on ;;
+    "off") bt_off ;;
+    *) echo "Usage: $0 on/off" 
+       exit 1
+       ;;
+esac
