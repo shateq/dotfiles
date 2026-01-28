@@ -33,7 +33,7 @@ export USERXSESSIONRC="$XDG_CACHE_HOME/X11/xsessionrc"
 export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
 
 
-export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export ANDROID_SDK_HOME="$XDG_DATA_HOME/Android/Sdk/"
 export CHROME_BROWSER=$BROWSER2 #: android sdk
 export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
