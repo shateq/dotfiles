@@ -1,4 +1,4 @@
-# vim: filetype=swayconfig
+#vim:filetype=swayconfig
 # man 5 sway
 set $mod Mod4
 set $alt Mod1
@@ -12,13 +12,10 @@ set $down j
 set $up k
 set $right l
 # displays
+set $rename_menu tofi --prompt-text "Rename workspace: " --require-match=false --width=50% --height=12%
 set $lock_screen 'swaylock -f -c 282828 -k'
 set $display_enable output * power on
 set $display_disable output * power off
-
-#: Backgrounds
-set $bg1 "$HOME/Pictures/Bg/macos_seqoia.jpg"
-output * bg $bg1 fill
 
 #: resize and workspace mode
 include conf.d/*
@@ -46,7 +43,7 @@ seat * xcursor_theme Adwaita 28
 
 floating_modifier $mod normal
 focus_follows_mouse always
-mouse_warping container
+#mouse_warping container
 
 default_border pixel 1
 smart_borders no_gaps
@@ -105,7 +102,7 @@ bindsym {
     $mod+f fullscreen
     $mod+Shift+f floating toggle
 #: screenshot
-    Print exec grim -g $(slurp -d) "$HOME/Pictures/Screenshots/$(date +'%s_grim.png')"
+    Print exec grim -g "$(slurp -d)" "$HOME/Pictures/Screenshots/$(date +'%s_grim.png')"
 #: mark
     $mod+m mark --add "MARK"
     $mod+Shift+m unmark
@@ -132,6 +129,7 @@ bindsym {
     $mod+Shift+z move scratchpad
 
 #: Workspace binds
+    $mod+Shift+r exec $rename_menu | xargs swaymsg rename workspace current to  
     $mod+n workspace next
     $mod+p workspace prev
     $mod+Tab workspace back_and_forth
