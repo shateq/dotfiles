@@ -25,6 +25,8 @@ A="| awk" \
 E="| nvim -" \
 G="| grep" \
 L="| less" \
+
+command -v "soffice" >/dev/null && alias doc2pdf="soffice --convert-to pdf"
 #: linux only
 command -v "xdg-open" >/dev/null && alias open="setsid xdg-open"
 

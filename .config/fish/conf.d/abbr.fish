@@ -16,8 +16,9 @@ abbr -a -- tarls "tar -tvf"
 abbr -a -- untar "tar -xv'"
 
 
-#abbr -a ghg "cd $(ghq root)/$(ghq list | fzf)"
-command -v "xdg-open" >/dev/null && abbr -a "open" "xdg-open"
+command -v "soffice" >/dev/null && abbr -a "doc2pdf" "soffice --convert-to pdf"
+abbr -a ghg "cd (ghq root)/(ghq list | fzf)"
+command -v "xdg-open" >/dev/null && abbr -a "open" "setsid xdg-open"
 
 abbr -a --position anywhere A "| awk"
 abbr -a --position anywhere G "| grep"
