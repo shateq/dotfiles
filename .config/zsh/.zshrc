@@ -1,6 +1,5 @@
 autoload -U colors && colors # enable colors
 
-
 #: GREETER
 PROMPT="%F{black}%K{blue} %n %K{cyan} %2d %f%k %(?..%F{red}%? )%f%k; "
 RPROMPT="%F{magenta}%T%f"
@@ -29,6 +28,7 @@ zi snippet OMZP::sudo
 zi ice lucid wait'3'
 zi light zdharma-continuum/fast-syntax-highlighting
 
+#############
 #: MAIN ZSH
 setopt autocd # type a dir to cd
 setopt extended_glob # match ~ # ^
@@ -40,10 +40,23 @@ unsetopt prompt_sp # don't autoclean blanklines
 stty stop undef # disable accidental ctrl s
 
 #: HISTORY
-export HISTFILE="$XDG_CACHE_HOME/zsh_history"
 setopt append_history 
 setopt share_history
 setopt histignorespace
+HISTFILE="$XDG_CACHE_HOME/zsh_history"
+HISTCONTROL=ignoreboth # duplicates and starting with space ignored
+HIST_STAMPS="dd.mm.yyyy"
+HISTSIZE=5000
+SAVEHIST=5000
+
+export LESS="-R"
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;36m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
 
 #: Completion
 setopt hash_list_all # on cmp ensures correction but may be slow
