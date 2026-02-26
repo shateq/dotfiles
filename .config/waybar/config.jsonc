@@ -4,54 +4,110 @@
     "height": 24,
     "spacing": 4,
     "modules-left": [
-        "sway/scratchpad", 
-        "sway/mode", 
-        "sway/window", 
-        "custom/media"
+        "tray", 
+        "niri/window"
+        // "sway/mode", 
+        // "sway/window", 
     ],
     "modules-center": [
-        "sway/workspaces", 
+        "niri/workspaces"
+        // "sway/workspaces",
+        // "sway/scratchpad", 
     ],
     "modules-right": [
-        "tray", 
-        "sway/language", 
-        "custom/sep", 
+        "niri/language", 
+        // "sway/language", 
         "cpu", 
         "memory", 
+        "wireplumber",
+        //"pulseaudio", 
         "idle_inhibitor", 
-        "custom/sep",
-        "jack",
-        "pulseaudio", 
         "clock"
     ],
     "sway/language": {
+        "on-click": "swaymsg input \\* xkb_switch_layout next",
         "format": "{short} {variant}",
-        "on-click": "swaymsg input * xkb_switch_layout next"
+    },
+    "sway/window": {
+        "icon": true,
+        "icon-size": 20,
     },
     "sway/workspaces": {
-        "disable-scroll": true,
         "all-outputs": true,
+        "on-scroll-up": "swaymsg workspace prev",
+        "on-scroll-down": "swaymsg workspace next",
         "warp-on-scroll": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
+            "1": "I",
             "2": "www",
-            "3": "",
-            "8": " jack",
+            "3": "III",
+            "4": "IV",
+            "5": "V",
             //"urgent": "",
             //"focused": "",
             //"default": ""
         }
     },
     "sway/mode": {
-        "format": "<span style=\"oblique\">{}</span>"
+        "format": "{}",
     },
     "sway/scratchpad": {
+        "on-click": "swaymsg scratchpad show",
         "format": "{icon} {count}",
         "show-empty": false,
         "format-icons": ["", ""],
         "tooltip": true,
-        "tooltip-format": "{app} :: {title}"
+        "tooltip-format": "{app} ~ {title}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "format": "{:%a %d %b %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        //"format-alt": "{:%d/%m/%Y}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% ",
+        "on-click": "kitty btop",
+        "tooltip": false
+    },
+    "wireplumber": {
+        "on-click": "pavucontrol",
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "M {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    // "jack": {
+    //     "format": "",
+    //     "format-connected": "{latency}ms jack 👍",
+    //     "on-click": "qjackctl"
+    // },
+    "custom/sep": {
+        "format": "::"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -79,52 +135,6 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "format": "{:%a %d %b %H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        //"format-alt": "{:%d/%m/%Y}"
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% ",
-        "on-click": "kitty btop",
-        "tooltip": false
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "M {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "jack": {
-        "format": "",
-        "format-connected": "{latency}ms jack 👍",
-        "on-click": "qjackctl"
-    },
-    "custom/sep": {
-        "format": "||"
-    }
     //"custom/media": {
         //"format": "{icon} {}",
         //"return-type": "json",
@@ -137,5 +147,6 @@
         //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         //// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     //}
+
 }
 

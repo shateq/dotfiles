@@ -4,8 +4,9 @@ set $mod Mod4
 set $alt Mod1
 
 set $term kitty
-set $menu wofi --show drun | xargs swaymsg exec --
-set $dmenu wofi --show run | xargs swaymsg exec -- 
+set $menu rofi -show drun | xargs swaymsg exec --
+set $dmenu rofi -show run | xargs swaymsg exec -- 
+# wont ever use wofi, gtk is ugly, configuring it was hard
 
 set $left h
 set $down j
@@ -62,18 +63,16 @@ input * {
 #: Keybindings
 #: with --locked
 bindsym --locked {
-    XF86AudioPlay exec playerctl play-pause
+    XF86AudioPlay  exec playerctl play-pause
     XF86AudioPause exec playerctl pause
-    XF86AudioStop exec playerctl stop
-    XF86AudioPrev exec playerctl previous
-    XF86AudioNext exec playerctl next
-    XF86AudioRaiseVolume exec amixer set Master 4%+
-    XF86AudioLowerVolume exec amixer set Master 4%-
-    #pactl raises volume above 100% (bad)
-    #XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    #XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-    XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SINK@ toggle
+    XF86AudioStop  exec playerctl stop
+    XF86AudioPrev  exec playerctl previous
+    XF86AudioNext  exec playerctl next
+
+    XF86AudioRaiseVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"
+    XF86AudioLowerVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"
+    XF86AudioMute        exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    XF86AudioMicMute     exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 }
 
 #: layout independent
@@ -85,7 +84,7 @@ bindsym --to-code {
     $mod+c exec wtype -M ctrl -P Insert -p Insert -m ctrl
     $mod+v exec wtype -M shift -P Insert -p Insert -m shift
 
-    $mod+$alt+v exec cliphist list | wofi --dmenu --pre-display-cmd "echo '%s' | cut -f 2" | cliphist decode | wl-copy
+    $mod+$alt+v exec cliphist list | rofi -dmenu -e "echo '%s' | cut -f 2" | cliphist decode | wl-copy
 }
 
 bindsym {
@@ -94,44 +93,49 @@ bindsym {
     $mod+$alt+Escape reload
     $mod+$alt+BackSpace exec swaymsg exit
 #: Launch binds
-    $mod+space exec $menu
-    $mod+d exec $dmenu
+    $mod+space  exec $menu
+    $mod+d      exec $dmenu
     $mod+Return exec $term
+    Print       exec grim -g "$(slurp -d)" "$HOME/Pictures/Screenshots/$(date +'%s_grim.png')"
 
     $mod+Shift+Return focus mode_toggle
     $mod+f fullscreen
     $mod+Shift+f floating toggle
-#: screenshot
-    Print exec grim -g "$(slurp -d)" "$HOME/Pictures/Screenshots/$(date +'%s_grim.png')"
 #: mark
     $mod+m mark --add "MARK"
     $mod+Shift+m unmark
     $mod+$alt+m [con_mark="MARK"] focus
     $mod+Ctrl+m [con_mark="MARK"] move to workspace current
 #: Motion binds 
-    $mod+$left focus left
-    $mod+$down focus down
-    $mod+$up focus up
+    $mod+$left  focus left
+    $mod+$down  focus down
+    $mod+$up    focus up
     $mod+$right focus right
 
-    $mod+Shift+$left move left
-    $mod+Shift+$down move down
-    $mod+Shift+$up move up
+    $mod+Shift+$left  move left
+    $mod+Shift+$down  move down
+    $mod+Shift+$up    move up
     $mod+Shift+$right move right
+#: Displays
+    $mod+period focus output left
+    $mod+comma  focus output right
+
+    $mod+Shift+period move workspace to output left
+    $mod+Shift+comma  move workspace to output right
 #: Windows binds
     $mod+Shift+v splitv
     $mod+Shift+s splith
 
-    $mod+t layout toggle split
+    $mod+t       layout toggle split
     $mod+Shift+t layout tabbed
 #: Scratchpad
-    $mod+z scratchpad show
+    $mod+z       scratchpad show
     $mod+Shift+z move scratchpad
 
 #: Workspace binds
     $mod+Shift+r exec $rename_menu | xargs swaymsg rename workspace current to  
-    $mod+n workspace next
-    $mod+p workspace prev
+    $mod+n   workspace next
+    $mod+p   workspace prev
     $mod+Tab workspace back_and_forth
     # goated! get out of my way
     $mod+Shift+Tab move container to workspace back_and_forth
