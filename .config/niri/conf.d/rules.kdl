@@ -1,0 +1,28 @@
+workspace "web"
+
+window-rule {
+  match app-id="brave-browser"
+  match app-id="librewolf"
+  open-on-workspace "web";
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+  match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+  match app-id="pavucontrol"
+  open-floating true
+}
+
+// Example: block out two password managers from screen capture.
+window-rule {
+  match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+  match app-id=r#"^org\.gnome\.World\.Secrets$"#
+  block-out-from "screen-capture"
+}
+
+// Example: enable rounded corners for all windows.
+// (This example rule is commented out with a "/-" in front.)
+/-window-rule {
+  geometry-corner-radius 12
+  clip-to-geometry true
+}
