@@ -1,0 +1,6 @@
+[Unit]
+Description=Shutdown at midnight if no work is done
+
+[Service]
+Type=oneshot
+ExecStart=bash -c 'if ! pgrep kitty >/dev/null; then /usr/bin/systemctl poweroff; else /usr/bin/logger "kitty running, aborting scheduled shutdown" && exit 1; fi'

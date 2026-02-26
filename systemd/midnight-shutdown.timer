@@ -1,0 +1,10 @@
+[Unit]
+Description=Shutdown at midnight timer
+
+[Timer]
+OnCalendar=*-*-* 00:00:00
+Persistent=false
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

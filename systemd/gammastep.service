@@ -1,0 +1,12 @@
+[Unit]
+Description=Adjust screen color temperature based on time of day
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=gammastep
+ExecStop=gammastep -x
+Restart=on-abort
+
+[Install]
+WantedBy=graphical-session.target
