@@ -8,16 +8,28 @@
   "modules-center": ["wlr/taskbar", "custom/notif"],
   "modules-right": ["memory", "network", "wireplumber", "clock", "tray"],
 
+// Displays number of upgradeable packages.
+// Add the following file in /usr/share/libalpm/hooks/statusbar.hook:
+// [Trigger]
+// Operation = Upgrade
+// Type = Package
+// Target = *
+// [Action]
+// Description = Updating statusbar...
+// When = PostTransaction
+// Exec = /usr/bin/pkill -RTMIN+6 waybar
   "custom/distro": {
-    "format": "  ",
+    "format": "  {}",
+    "exec": "checkupdates | grep -Fcv '[ignored]' | sed -r 's/^[0-9]\\+/(&)/;s/^(0)$/ /g'",
+    "signal": 6,
     "tooltip": false
   },
 
-  // "custom/notif": {
-  //   "on-click": "makoctl restore",
-  //   "exec": "~/.local/bin/scripts/waybar-led",
-  //   "interval": 5,
-  // },
+  "custom/notif": {
+    "on-click": "makoctl restore",
+    "exec": "makoctl list | head -n1 | sed -r 's/^Notification [0-9]+: //'",
+    "signal": 5,
+  },
 
   "niri/workspaces": {
     "disable-markup": true,

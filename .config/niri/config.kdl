@@ -95,9 +95,8 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-// spawn-at-startup "waybar"
-// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+// Clipboard manager
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
 
 animations {
   // off
@@ -129,9 +128,12 @@ binds {
 
   Mod+Return repeat=false hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
   Mod+Space hotkey-overlay-title="Run app menu" { spawn-sh "tofi-drun | xargs niri msg action spawn --"; }
+  Mod+B hotkey-overlay-title="Run browser" { spawn-sh "$BROWSER"; }
+
   // Clipboard
   Mod+C hotkey-overlay-title="Integrated clipboard Copy" { spawn-sh "wtype -M ctrl -P Insert -p Insert -m ctrl"; }
   Mod+V hotkey-overlay-title="Integrated clipboard Paste" { spawn-sh "wtype -M shift -P Insert -p Insert -m shift"; }
+  Mod+Alt+V { spawn-sh "cliphist list | rofi -dmenu -e 'echo %s | cut -f 2' | cliphist decode | wl-copy"; }
 
   Super+Alt+Grave repeat=false { switch-layout "next"; }
 
@@ -139,8 +141,8 @@ binds {
   Super+Ctrl+B { spawn-sh "killall -SIGUSR2 waybar"; }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
-  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0 && wp-vol"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05- && wp-vol"; }
   XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
   XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
   XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
