@@ -12,16 +12,18 @@ text/xml=librewolf.desktop;
 image/gif=image.desktop
 image/png=image.desktop;
 image/jpeg=image.desktop;
-x-scheme-handler/http=librewolf.desktop;
-x-scheme-handler/https=librewolf.desktop;
-x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
-x-scheme-handler/mailto=brave-browser.desktop
-x-scheme-handler/discord=vesktop.desktop
+x-scheme-handler/http=librewolf.desktop;brave-browser.desktop;
+x-scheme-handler/https=brave-browser.desktop;librewolf.desktop;
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop;
+x-scheme-handler/mailto=brave-browser.desktop;
+x-scheme-handler/discord=vesktop.desktop;
+inode/directory=yazi.desktop;
 
 [Added Associations]
 image/svg+xml=gimp.desktop;librewolf.desktop;
 image/heif=image.desktop;
 video/webm=video.desktop;
+inode/directory=yazi.desktop;
 #text/calendar=userapp-Thunderbird-3EC4V2.desktop;
 #x-scheme-handler/mailto=userapp-Thunderbird-LS2TV2.desktop;
 #x-scheme-handler/mid=userapp-Thunderbird-LS2TV2.desktop;
