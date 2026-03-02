@@ -9,10 +9,9 @@ include "conf.d/rules.kdl"
 input {
   keyboard {
     xkb {
-      layout "pl"
-      variant "colemak"
-      options "caps:backspace"
-      //options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+      layout "pl,us"
+      variant "colemak,"
+      options "caps:backspace,grp:ctrls_toggle"
     }
   }
   // Uncomment this to make the mouse warp to the center of newly focused windows.
@@ -108,7 +107,7 @@ animations {
 // Alt Tab
 recent-windows {
     // off
-    open-delay-ms 200
+    open-delay-ms 100
     /-previews {
         max-height 480
         max-scale 0.5
@@ -128,15 +127,17 @@ binds {
   Ctrl+Alt+Delete { quit; }
   Mod+Shift+Slash { show-hotkey-overlay; }
 
-  Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
+  Mod+Return repeat=false hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
   Mod+Space hotkey-overlay-title="Run app menu" { spawn-sh "tofi-drun | xargs niri msg action spawn --"; }
   // Clipboard
   Mod+C hotkey-overlay-title="Integrated clipboard Copy" { spawn-sh "wtype -M ctrl -P Insert -p Insert -m ctrl"; }
   Mod+V hotkey-overlay-title="Integrated clipboard Paste" { spawn-sh "wtype -M shift -P Insert -p Insert -m shift"; }
 
+  Super+Alt+Grave repeat=false { switch-layout "next"; }
+
   Super+Alt+B { spawn-sh "killall -SIGUSR1 waybar"; }
+  Super+Ctrl+B { spawn-sh "killall -SIGUSR2 waybar"; }
   Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-  // Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
   XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
   XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
@@ -304,7 +305,7 @@ binds {
   Mod+F { maximize-column; }
   Mod+Shift+F { fullscreen-window; }
   // Makes the column "fill the rest of the space".
-  Mod+Ctrl+F { expand-column-to-available-width; }
+  // Mod+Ctrl+F { expand-column-to-available-width; }
 
   Mod+G { center-column; }
   Mod+Ctrl+G { center-visible-columns; }
@@ -313,25 +314,15 @@ binds {
   // set-column-width "100" will make the column occupy 200 physical screen pixels.
   Mod+Minus { set-column-width "-10%"; }
   Mod+Equal { set-column-width "+10%"; }
-
-  // Finer height adjustments when in column with other windows.
   Mod+Shift+Minus { set-window-height "-10%"; }
   Mod+Shift+Equal { set-window-height "+10%"; }
 
   // Move the focused window between the floating and the tiling layout.
-  Mod+Shift+Space { toggle-window-floating; }
-  Mod+Shift+V     { switch-focus-between-floating-and-tiling; }
+  Mod+Shift+X { toggle-window-floating; }
+  Mod+X       { switch-focus-between-floating-and-tiling; }
 
   // Toggle tabbed column display mode.
   Mod+W { toggle-column-tabbed-display; }
-
-  // Actions to switch layouts.
-  // Note: if you uncomment these, make sure you do NOT have
-  // a matching layout switch hotkey configured in xkb options above.
-  // Having both at once on the same hotkey will break the switching,
-  // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-  // Mod+Space       { switch-layout "next"; }
-  // Mod+Shift+Space { switch-layout "prev"; }
 
   // The allow-inhibiting=false property can be applied to other binds as well,
   // which ensures niri always processes them, even when an inhibitor is active.

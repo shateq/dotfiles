@@ -1,204 +1,99 @@
+/* Dwm-like bar styling for niri */
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Iosevka, FontAwesome, Helvetica, sans-serif;
-    font-size: 14px;
+  font-family: "UbuntuMono Nerd Font", monospace;
+  font-size: 13px;
+
+  border-radius: 0;
 }
 
-window#waybar {
-    background-color: rgba(43, 48, 59, 0.1);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
+#custom-distro {
+  padding: 0 5px 0 0;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+window#waybar { 
+  background-color: #225877; 
+  color: #ffffff;    
 }
 
-window#waybar.brave {
-    background-color: #3F3F3F;
+.modules-left {
+  background-color: #323232;
+  padding: 0 15px 0 0;
 }
-
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    /*box-shadow: inset 0 -3px transparent;*/
-    /* Avoid rounded borders under each button name */
-    border: none;
-    /* border-radius: 10px; */
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-#language {
-    background: #f1c40f;
-    color: #740864;
-    min-width: 16px;
-}
-
-#scratchpad {
-    background: rgba(73, 73, 73, 1);
-    padding: 0 10px;
-}
-
-#scratchpad.empty {
-	background-color: transparent;
+/* .modules-middle { */
+/*   background-color: transparent; */
+/* } */
+.modules-right {
+  background-color: #323232;
+  padding: 0px 5px 0px 0px;
 }
 
 #workspaces {
-    background: rgba(73, 73, 73, 1);
-    padding: 0 2rem;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
+  padding: 0 10px; 
+  min-width: 5px;
+  color: #888888;
+  border-radius: 0;
+}
+
+#workspaces button.focused { 
+  padding: 0px 11px 0px 11px; 
+  background-color: #285577;
+  color: #ffffff;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.9);
+  color: #000;
 }
 
-#workspaces button.focused {
-    background-color: rgba(255,255,255,0.5);
-    box-shadow: inset 0 -3px #ffffff;
+#language { 
+  background-color: #900000;
+  color: #ffffff;
+  padding: 0 5px;
+  border: 1px solid #2f343a;
 }
 
-#workspaces button.urgent {
-    background-color: #eb4d4b;
+
+#window {
+  color: #ffffff;
+  background-color: #285577;
+  padding: 0 10px;
 }
 
-#cpu,
-#memory,
-#temperature,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#idle_inhibitor,
-#language,
-#mpd {
-    padding: 0 10px;
-    color: #ffffff;
-    border: none;
-    /* border-radius: 10px; */
+window#waybar.empty #window {
+  background-color: transparent;
+  color: transparent;
 }
 
-#mode {
-    background-color: #64727D;
-    padding: 0 10px;
-    border-bottom: 3px solid #ffffff;
+window#waybar.empty {
+  background-color: #323232;
+}
+
+
+#network, #temperature, #backlight, #pulseudio, #wireplumber, #battery {
+  padding: 0 10px;
 }
 
 #clock {
-    padding: 0 10px;
-    background-color: #64727D;
-    border: none;
-    /* border-bottom-left-radius: 10px; */
+  margin: 0 15px;
 }
 
-#window {
-    margin: 0 7px;
+#tray{
+  background-color: #225877; 
+  padding: 0px 8px 0px 5px;
+  /* margin: 0px 5px 0px 5px; */
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+#network.disconnected {
+  color: #ff5555;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+#taskbar button {
+  background-color: #323232;
+  padding: 0 6px;
 }
 
-tooltip {
-  background: rgba(73, 73, 73, 0.8);
-  border: 1px solid rgba(100, 114, 125, 0.5);
+#taskbar button.active {
+  background-color: #900000;
 }
-
-label:focus {
-    background-color: #000000;
-}
-
-#cpu {
-    background-color: #2ecc71;
-    color: #000000;
-}
-
-#memory {
-    background-color: #9b59b6;
-}
-
-#tray {
-    padding: 0 10px;
-    border: none;
-    /* border-bottom-right-radius: 10px; */
-    background-color: #2980b9;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-/* SOUND */
-#pulseaudio {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
-}
-
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-

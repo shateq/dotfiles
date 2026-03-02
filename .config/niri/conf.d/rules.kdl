@@ -1,3 +1,4 @@
+workspace "1"
 workspace "web"
 
 window-rule {
@@ -6,14 +7,16 @@ window-rule {
   open-on-workspace "web";
 }
 
-// Open the Firefox picture-in-picture player as floating by default.
+// open floating
 window-rule {
   match app-id=r#"firefox$"# title="^Picture-in-Picture$"
   match app-id="pavucontrol"
+  match app-id="io.ente.auth"
+  match app-id="xdg-desktop-portal.*"
   open-floating true
 }
 
-// Example: block out two password managers from screen capture.
+// block out two password managers from screen capture.
 window-rule {
   match app-id=r#"^org\.keepassxc\.KeePassXC$"#
   match app-id=r#"^org\.gnome\.World\.Secrets$"#

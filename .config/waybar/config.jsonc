@@ -1,152 +1,102 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 24,
-    "spacing": 4,
-    "modules-left": [
-        "tray", 
-        "niri/window"
-        // "sway/mode", 
-        // "sway/window", 
-    ],
-    "modules-center": [
-        "niri/workspaces"
-        // "sway/workspaces",
-        // "sway/scratchpad", 
-    ],
-    "modules-right": [
-        "niri/language", 
-        // "sway/language", 
-        "cpu", 
-        "memory", 
-        "wireplumber",
-        //"pulseaudio", 
-        "idle_inhibitor", 
-        "clock"
-    ],
-    "sway/language": {
-        "on-click": "swaymsg input \\* xkb_switch_layout next",
-        "format": "{short} {variant}",
-    },
-    "sway/window": {
-        "icon": true,
-        "icon-size": 20,
-    },
-    "sway/workspaces": {
-        "all-outputs": true,
-        "on-scroll-up": "swaymsg workspace prev",
-        "on-scroll-down": "swaymsg workspace next",
-        "warp-on-scroll": false,
-        "format": "{icon}",
-        "format-icons": {
-            "1": "I",
-            "2": "www",
-            "3": "III",
-            "4": "IV",
-            "5": "V",
-            //"urgent": "",
-            //"focused": "",
-            //"default": ""
-        }
-    },
-    "sway/mode": {
-        "format": "{}",
-    },
-    "sway/scratchpad": {
-        "on-click": "swaymsg scratchpad show",
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app} ~ {title}"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": " ",
-            "deactivated": " "
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "format": "{:%a %d %b %H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        //"format-alt": "{:%d/%m/%Y}"
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% ",
-        "on-click": "kitty btop",
-        "tooltip": false
-    },
-    "wireplumber": {
-        "on-click": "pavucontrol",
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "M {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    // "jack": {
-    //     "format": "",
-    //     "format-connected": "{latency}ms jack 👍",
-    //     "on-click": "qjackctl"
+  // Dwm-like styling for niri
+  "layer": "top",	
+  "position": "top",
+  "height": 20,
+
+  "modules-left": ["custom/distro", "niri/workspaces", "niri/language", "niri/window"],
+  "modules-center": ["wlr/taskbar", "custom/notif"],
+  "modules-right": ["memory", "network", "wireplumber", "clock", "tray"],
+
+  "custom/distro": {
+    "format": "  ",
+    "tooltip": false
+  },
+
+  // "custom/notif": {
+  //   "on-click": "makoctl restore",
+  //   "exec": "~/.local/bin/scripts/waybar-led",
+  //   "interval": 5,
+  // },
+
+  "niri/workspaces": {
+    "disable-markup": true,
+    "format": "{index}" 
+  },
+  "niri/window": {
+    "format": "{}",
+    "max-length": 100
+  },
+  "niri/language": {
+    "format": "{shortDescription}",
+    "interval": 30
+  },
+  // "custom/scratch": {
+  //   "interval": 60,
+  //   "exec": "exec niri msg keyboard-layouts",
+  //   "format": "^{}", 
+  //   "on-click": "swaymsg 'scratchpad show'",
+  //   "on-click-right": "swaymsg 'move scratchpad'"
+  // },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  },
+  "clock": {
+    "format": "{:%a %d %b %R}",
+    "interval": 30
+  },
+  "memory": {
+    "format": "  {}%",
+    "on-click": "kitty btop",
+    "tooltip": false
+  },
+  "wireplumber": {
+    "on-click": "pavucontrol",
+    "format": "{icon} {volume}% ",
+    "format-muted": "M婢 {format_source}",
+    "format-bluetooth": " {volume}% ",
+    "format-bluetooth-muted": "M婢  {volume}% ",
+    // "format-icons": {
+    //   "default": [""]
     // },
-    "custom/sep": {
-        "format": "::"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    //"custom/media": {
-        //"format": "{icon} {}",
-        //"return-type": "json",
-        //"max-length": 40,
-        //"format-icons": {
-            //"spotify": "",
-            //"default": "🎜"
-        //},\
-        //"escape": true,
-        //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        //// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    //}
+  },
+  "pulseaudio": {
+    "on-click": "pavucontrol",
+    "format": "{icon} {volume}% ",
+    "format-muted": "M婢 {format_source}",
+    "format-bluetooth": " {volume}% ",
+    "format-bluetooth-muted": "M婢  {volume}% ",
+    // "format-icons": {
+    //   "default": [""]
+    // },
+  },
+  "network": {
+    // "interface": "wlp2s0b1", 
+    "max-length": 20,
+    "format-ethernet": "  ethernet",
+    "format-wifi": "  wifi {essid}",
+    "format-disconnected": "睊Disconnected",
+    "interval": 30
+  },
 
+  // "backlight": {
+  //   "device": "intel_backlight",
+  //   "format": "{icon}  {percent}%  ",
+  //   "format-icons": ["","","",""],
+  //   "interval": 60
+  // },
+
+  "wlr/taskbar": {
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "format": "{icon}",
+    "icon-size": 16,
+    "all-outputs": true,
+    "tooltip-format": "{name}: {title}",
+    "ignore-list": [
+      "rofi", "tofi"
+    ]
+  },
 }
-

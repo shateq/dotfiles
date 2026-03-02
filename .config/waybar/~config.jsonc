@@ -1,0 +1,152 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 4,
+    "modules-left": [
+        "tray", 
+        "niri/window"
+        // "sway/mode", 
+        // "sway/window", 
+    ],
+    "modules-center": [
+        "niri/workspaces"
+        // "sway/workspaces",
+        // "sway/scratchpad", 
+    ],
+    "modules-right": [
+        "niri/language", 
+        // "sway/language", 
+        "cpu", 
+        "memory", 
+        "wireplumber",
+        //"pulseaudio", 
+        "idle_inhibitor", 
+        "clock"
+    ],
+    "sway/language": {
+        "on-click": "swaymsg input \\* xkb_switch_layout next",
+        "format": "{short} {variant}",
+    },
+    "sway/window": {
+        "icon": true,
+        "icon-size": 20,
+    },
+    "sway/workspaces": {
+        "all-outputs": true,
+        "on-scroll-up": "swaymsg workspace prev",
+        "on-scroll-down": "swaymsg workspace next",
+        "warp-on-scroll": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "I",
+            "2": "www",
+            "3": "III",
+            "4": "IV",
+            "5": "V",
+            //"urgent": "",
+            //"focused": "",
+            //"default": ""
+        }
+    },
+    "sway/mode": {
+        "format": "{}",
+    },
+    "sway/scratchpad": {
+        "on-click": "swaymsg scratchpad show",
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app} ~ {title}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "format": "{:%a %d %b %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        //"format-alt": "{:%d/%m/%Y}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% ",
+        "on-click": "kitty btop",
+        "tooltip": false
+    },
+    "wireplumber": {
+        "on-click": "pavucontrol",
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "M {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    // "jack": {
+    //     "format": "",
+    //     "format-connected": "{latency}ms jack 👍",
+    //     "on-click": "qjackctl"
+    // },
+    "custom/sep": {
+        "format": "::"
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    //"custom/media": {
+        //"format": "{icon} {}",
+        //"return-type": "json",
+        //"max-length": 40,
+        //"format-icons": {
+            //"spotify": "",
+            //"default": "🎜"
+        //},\
+        //"escape": true,
+        //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        //// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    //}
+
+}
+
