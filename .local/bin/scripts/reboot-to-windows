@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo efibootmgr -n 0000
+systemctl reboot
