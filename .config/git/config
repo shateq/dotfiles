@@ -5,13 +5,16 @@
     a = add
     br = branch
     cl = clone
-	cm = commit -m
-	d = diff
+    co = checkout
+    cm = commit -m
+    df = diff
     l = log --pretty=oneline -n 20 --graph --abbrev-commit  
     s = status -s
-	sm = submodule
-	st = status
+    sm = submodule
+    st = status
+    sw = switch
     origin = remote get-url origin
+    pr = pull --rebase
 [core]
     compression = 7
     fsync = none
