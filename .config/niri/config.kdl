@@ -5,6 +5,13 @@ hotkey-overlay {
 }
 
 include "conf.d/rules.kdl"
+include "conf.d/mouse.kdl"
+
+// my laptop's
+output "LVDS-1" {
+  position x=0 y=0
+  backdrop-color "#001100" 
+}
 
 input {
   keyboard {
@@ -13,14 +20,6 @@ input {
       variant "colemak,"
       options "caps:backspace,grp:ctrls_toggle"
     }
-  }
-  // Uncomment this to make the mouse warp to the center of newly focused windows.
-  // warp-mouse-to-focus
-  focus-follows-mouse max-scroll-amount="40%"
-
-  touchpad {
-    natural-scroll
-    //off
   }
 }
 
@@ -38,8 +37,6 @@ layout {
   // "switch-preset-column-width" (Mod+R) toggles
   preset-column-widths {
     // Proportion sets the width as a fraction of the output width, taking gaps into account.
-    // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
-    // The default preset widths are 1/3, 1/2 and 2/3 of the output.
     proportion 0.33333
     proportion 0.5
     proportion 0.66667
@@ -123,7 +120,9 @@ recent-windows {
 // when running as a winit window.
 binds {
   Mod+Shift+BackSpace { quit; }
-  Ctrl+Alt+Delete { quit; }
+  // Powers off the monitors. To turn them back on, do any input
+  Mod+Alt+BackSpace { power-off-monitors; }
+
   Mod+Shift+Slash { show-hotkey-overlay; }
 
   Mod+Return repeat=false hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
@@ -214,53 +213,20 @@ binds {
   // And you can also move a whole workspace to another monitor:
   // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
 
-  Mod+Page_Down      { focus-workspace-down; }
-  Mod+Page_Up        { focus-workspace-up; }
-  Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
-  Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-
-  Mod+D              { focus-workspace-down; }
-  Mod+U              { focus-workspace-up; }
-  Mod+Ctrl+D         { move-column-to-workspace-down; }
-  Mod+Ctrl+U         { move-column-to-workspace-up; }
-
-  // Alternatively, there are commands to move just a single window:
-  // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
-
+  Mod+Page_Down       { focus-workspace-down; }
+  Mod+Page_Up         { focus-workspace-up; }
+  // Alternatively { move-window-to-workspace-down; }
+  Mod+Ctrl+Page_Down  { move-column-to-workspace-down; }
+  Mod+Ctrl+Page_Up    { move-column-to-workspace-up; }
   Mod+Shift+Page_Down { move-workspace-down; }
   Mod+Shift+Page_Up   { move-workspace-up; }
-  Mod+Shift+D         { move-workspace-down; }
-  Mod+Shift+U         { move-workspace-up; }
-
-  // Mouse
-  // To avoid scrolling through workspaces really fast, you can use the cooldown-ms property. 
-  Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-  Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-  Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-  Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
-
-  Mod+WheelScrollRight      { focus-column-right; }
-  Mod+WheelScrollLeft       { focus-column-left; }
-  Mod+Ctrl+WheelScrollRight { move-column-right; }
-  Mod+Ctrl+WheelScrollLeft  { move-column-left; }
-
-  // Usually scrolling up and down with Shift in applications results in
-  // horizontal scrolling; these binds replicate that.
-  Mod+Shift+WheelScrollDown      { focus-column-right; }
-  Mod+Shift+WheelScrollUp        { focus-column-left; }
-  Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-  Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
-
-  // Similarly, you can bind touchpad scroll "ticks".
-  // Touchpad scrolling is continuous, so for these binds it is split into discrete intervals.
-  Mod+TouchpadScrollDown cooldown-ms=300 { toggle-overview; }
-  Mod+TouchpadScrollUp   cooldown-ms=300 { focus-workspace-previous;  }
-
-  Mod+Shift+TouchpadScrollDown cooldown-ms=200 { focus-column-right; }
-  Mod+Shift+TouchpadScrollUp   cooldown-ms=200 { focus-column-left; }
-
-  Mod+Ctrl+TouchpadScrollDown cooldown-ms=200 { focus-workspace-down; }
-  Mod+Ctrl+TouchpadScrollUp   cooldown-ms=200 { focus-workspace-up; }
+  // same as with Page up down
+  Mod+N       { focus-workspace-down; }
+  Mod+P       { focus-workspace-up; }
+  Mod+Ctrl+N  { move-column-to-workspace-down; }
+  Mod+Ctrl+P  { move-column-to-workspace-up; }
+  Mod+Shift+N { move-workspace-down; }
+  Mod+Shift+P { move-workspace-up; }
 
   // Workspaces
   // Switches focus between the current and the previous workspace.
@@ -275,6 +241,7 @@ binds {
   Mod+7 { focus-workspace 7; }
   Mod+8 { focus-workspace 8; }
   Mod+9 { focus-workspace 9; }
+  // Alternatively, single window { move-window-to-workspace 1; }
   Mod+Ctrl+1 { move-column-to-workspace 1; }
   Mod+Ctrl+2 { move-column-to-workspace 2; }
   Mod+Ctrl+3 { move-column-to-workspace 3; }
@@ -284,9 +251,6 @@ binds {
   Mod+Ctrl+7 { move-column-to-workspace 7; }
   Mod+Ctrl+8 { move-column-to-workspace 8; }
   Mod+Ctrl+9 { move-column-to-workspace 9; }
-
-  // Alternatively, there are commands to move just a single window:
-  // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
   // If the window is alone, they will consume it into the nearby column to the side.
   // If the window is already in a column, they will expel it out.
@@ -307,17 +271,16 @@ binds {
   Mod+F { maximize-column; }
   Mod+Shift+F { fullscreen-window; }
   // Makes the column "fill the rest of the space".
-  // Mod+Ctrl+F { expand-column-to-available-width; }
+  Mod+Ctrl+F { expand-column-to-available-width; }
 
   Mod+G { center-column; }
   Mod+Ctrl+G { center-visible-columns; }
 
   // Finer width adjustments.
-  // set-column-width "100" will make the column occupy 200 physical screen pixels.
-  Mod+Minus { set-column-width "-10%"; }
-  Mod+Equal { set-column-width "+10%"; }
-  Mod+Shift+Minus { set-window-height "-10%"; }
-  Mod+Shift+Equal { set-window-height "+10%"; }
+  Mod+Minus { set-column-width "-7%"; }
+  Mod+Equal { set-column-width "+7%"; }
+  Mod+Shift+Minus { set-window-height "-7%"; }
+  Mod+Shift+Equal { set-window-height "+7%"; }
 
   // Move the focused window between the floating and the tiling layout.
   Mod+Shift+X { toggle-window-floating; }
@@ -329,7 +292,4 @@ binds {
   // The allow-inhibiting=false property can be applied to other binds as well,
   // which ensures niri always processes them, even when an inhibitor is active.
   Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
-  // Powers off the monitors. To turn them back on, do any input
-  Mod+Shift+P { power-off-monitors; }
 }
