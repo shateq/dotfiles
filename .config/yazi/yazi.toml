@@ -15,3 +15,8 @@ desc = "Cd to ~/Downloads"
 on   = "<C-w>"
 run  = "close"
 desc = "Close the current tab"
+
+[[mgr.prepend_keymap]]
+on  = "<C-n>"
+run = "zsh -- dragon-drop -x -T %s 2>/dev/null &"
+desc = "Drag current file"
