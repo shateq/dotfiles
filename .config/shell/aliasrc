@@ -2,10 +2,8 @@
 
 alias \
 yarn="yarn --use-yarnrc \"$XDG_CONFIG_HOME/yarn/config\"" \
-conky="conky --config=\"$XDG_CONFIG_HOME/conky/conkyrc\"" \
-conky-reload="killall -SIGUSR1 conky" \
-sxhkd-reload="killall -SIGUSR1 sxhkd" \
 waybar-reload="killall -SIGUSR2 waybar" \
+wget="wget --hsts-file=$XDG_STATE_HOME/wget-hsts" \
 
 #: gnu
 alias \
@@ -29,6 +27,7 @@ L="| less" \
 command -v "soffice" >/dev/null && alias doc2pdf="soffice --convert-to pdf"
 #: linux only
 command -v "xdg-open" >/dev/null && alias open="setsid xdg-open"
+command -v "dragon-drop" >/dev/null && alias drag="dragon-drop -x"
 
 json-format() {
     jq '.' $1 | sponge $1
