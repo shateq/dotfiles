@@ -1,10 +1,10 @@
 {
-  // Dwm-like styling for niri
+  // Dwm-like styling
   "layer": "top",	
   "position": "top",
   "height": 20,
 
-  "modules-left": ["custom/distro", "niri/workspaces", "niri/language", "niri/window"],
+  "modules-left": ["custom/distro", "hyprland/workspaces", "hyprland/language", "hyprland/window"],
   "modules-center": ["wlr/taskbar", "custom/notif"],
   "modules-right": ["memory", "network", "wireplumber", "clock", "tray"],
 

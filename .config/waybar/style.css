@@ -7,11 +7,12 @@
 }
 
 #custom-distro {
-  padding: 0;
+  padding-right: 0.5em;
 }
 
 window#waybar { 
-  background-color: #225877; 
+  background-color: transparent;
+  /* background-color: #225877;  */
   color: #ffffff;    
 }
 
@@ -27,7 +28,10 @@ window#waybar {
   padding: 0px 5px 0px 0px;
 }
 
-#workspaces {
+#workspaces button.active {
+  color: #fff;
+  font-weight: bolder;
+  background-color: black;
 }
 
 #workspaces button {
