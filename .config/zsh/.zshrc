@@ -1,4 +1,4 @@
-autoload -U colors && colors # enable colors
+autoload -U colors && colors
 
 #: GREETER
 PROMPT="%F{black}%K{blue} %n %K{cyan} %2d %f%k %(?..%F{red}%? )%f%k; "
@@ -7,45 +7,34 @@ RPROMPT="%F{magenta}%T%f"
 #: ssh-agent
 # start if not running
 if [ -z "$SSH_AUTH_SOCK" ]; then
-    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-        ssh-agent > ~/.ssh/agent-env
+    local agent_env="$XDG_CACHE_HOME/ssh-agent.env"
+
+    if [ -f "$agent_env" ]; then
+        source "$agent_env" >/dev/null
     fi
 
-    if [ -f ~/.ssh/agent-env ]; then
-        source ~/.ssh/agent-env > /dev/null
+    if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+        ssh-agent > "$agent_env"
+        source "$agent_env" >/dev/null
     fi
+
 fi
 
-#: PLUGINS
-ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-
-zi snippet OMZL::git.zsh
-zi snippet OMZP::sudo
-#zi cdclear -q #forget completions
-zi ice lucid wait'3'
-zi light zdharma-continuum/fast-syntax-highlighting
-
-#############
+###########
 #: MAIN ZSH
-setopt autocd # type a dir to cd
-setopt extended_glob # match ~ # ^
-setopt noglobdots
+setopt autocd
+setopt extended_glob noglobdots
 setopt longlistjobs # report PID on suspend
 setopt noshwordsplit # zsh style word splitting
 #setopt nohup # dont kill background processess
-unsetopt prompt_sp # don't autoclean blanklines
 stty stop undef # disable accidental ctrl s
 
-#: HISTORY
 setopt append_history 
 setopt share_history
 setopt histignorespace
+setopt histignoredups
+
 HISTFILE="$XDG_CACHE_HOME/zsh_history"
-HISTCONTROL=ignoreboth # duplicates and starting with space ignored
-HIST_STAMPS="dd.mm.yyyy"
 HISTSIZE=5000
 SAVEHIST=5000
 
@@ -61,7 +50,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 #: Completion
 setopt hash_list_all # on cmp ensures correction but may be slow
 setopt auto_param_slash # slash/ for dirs in cmp menu
-setopt auto_menu menu_complete # autocmp first menu match
+setopt auto_menu # fish-like
 setopt completeinword
 setopt no_case_glob no_case_match # case insensitive cmp
 
@@ -71,7 +60,7 @@ autoload -U compinit && compinit
 zstyle ':completion:*' menu select=3 # only use menu if more than 3 opts
 zstyle ':completion:*' special-dirs .. # .. will show 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # match uppercase from lowercase
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # colorize cmp menu
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # colorize cmp menu
 zstyle ':completion:*' squeeze-slashes false # explicit disable to allow /*/ expansion
 ##zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}' # format on cmp menu
 # complete manual by their section
@@ -87,13 +76,35 @@ zstyle ':completion:*:*cd:*:directory-stack' menu yes select
 setopt correct # correction nyae
 zstyle ':completion:*:correct:*' max-errors 1 # only correct if 1 typo
 
+##########
+#: PLUGINS
+ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+zi snippet OMZL::git.zsh
+zi snippet OMZP::sudo
+
+zinit pack for ls_colors
+
+#zi cdclear -q #forget completions
+zi ice lucid wait'3'
+zi light zdharma-continuum/fast-syntax-highlighting
+
+
 #: KEYBINDS
-# disable vi-mode (it sucks, open line in vim with ^n)
-bindkey -e
-# uses EDITOR env var
+# disable vi-mode (it sucks, open line in vim with A-n)
+bindkey -v
+
 autoload edit-command-line
 zle -N edit-command-line
-bindkey '^n' edit-command-line
+bindkey '\ee' edit-command-line
+
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'l' vi-forward-char
 
 # plugin wont work without vi-mode, so I turn vi-mode off and paste plugin here
 fancy-ctrl-z () {
@@ -129,16 +140,15 @@ function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	[ "$cwd" != "$PWD" ] && [ -n "$cwd" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
 
+
 bindkey -s '^t' "tmux a || tmux new^M"
 
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'l' vi-forward-char
-
 [ -f "$XDG_CONFIG_HOME/shell/aliasrc" ] && source $XDG_CONFIG_HOME/shell/aliasrc
-[ -f "$XDG_CONFIG_HOME/zsh/dirs.zsh" ] && source $XDG_CONFIG_HOME/zsh/dirs.zsh
+[ -f "$XDG_CONFIG_HOME/zsh/dirs.zsh" ]  && source $XDG_CONFIG_HOME/zsh/dirs.zsh
+[ -f "$XDG_CONFIG_HOME/zsh/widget.zsh" ]  && source $XDG_CONFIG_HOME/zsh/widget.zsh
+
+export PATH="$PATH:/opt/nanobrew/prefix/bin"
