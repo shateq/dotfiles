@@ -1,8 +1,7 @@
-# i3 config file (v4)
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# https://i3wm.org/docs/userguide.html for a complete reference!
 
-#super key
 set $mod Mod4
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -17,32 +16,32 @@ exec --no-startup-id setxkbmap -layout pl
 exec_always --no-startup-id picom -b
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id xrdb ~/.cache/wal/colors.Xresources
-# sxhkd for Media buttons
-#exec --no-startup-id sxhkd &
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/Pictures/Backgrounds/saturnus_png.png
 
-#gaps
-gaps inner 8
-gaps outer 4
-smart_gaps on
-#borders
-hide_edge_borders smart
+
+gaps vertical 2
+gaps inner 4
+gaps horizontal 6
+
+default_border pixel 1
+smart_borders no_gaps
+smart_gaps off
+
 
 # issues with fullscreen apps
 workspace_auto_back_and_forth no
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+#yes
+focus_follows_mouse always 
 tiling_drag modifier
-focus_follows_mouse yes
-# its just me, but right alignment>>>
-title_align right
 
 # KEYBIND
-include keybind.conf
+include conf.d/*
 
 # Start i3bar to display a workspace bar 
 bar {
