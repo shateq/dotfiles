@@ -1,0 +1,26 @@
+plugin {
+    hyprexpo {
+        columns = 3
+        gap_size = 30
+        bg_col = rgb(111111)
+        workspace_method = first 5 # [center/first] [workspace]
+    }
+}
+
+bind = SUPER, o, hyprexpo:expo, toggle
+bind = SUPER, o, submap, expose
+
+submap = expose, reset
+bind = , Escape, hyprexpo:expo, off
+bind = , 1, workspace, 1
+bind = , 2, workspace, 2
+bind = , 3, workspace, 3
+bind = , 4, workspace, 4
+bind = , 5, workspace, 5
+bind = , 6, workspace, 6
+bind = , 7, workspace, 7
+bind = , 8, workspace, 8
+bind = , 9, workspace, 9
+
+bind = , catchall, hyprexpo:expo, off
+submap = reset
