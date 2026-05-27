@@ -38,14 +38,18 @@ HISTFILE="$XDG_CACHE_HOME/zsh_history"
 HISTSIZE=5000
 SAVEHIST=5000
 
-export LESS="-R"
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;36m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
+# export MANPAGER="nvim +Man!"
+# Colored man pages
+# export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export MANROFFOPT="-c"
+
+export LESS_TERMCAP_mb=$'\e[1;32m'     # begin blinking
+export LESS_TERMCAP_md=$'\e[1;32m'     # begin bold
+export LESS_TERMCAP_me=$'\e[0m'        # end mode
+export LESS_TERMCAP_so=$'\e[01;44;33m' # begin standout-mode (search)
+export LESS_TERMCAP_se=$'\e[0m'        # end standout-mode
+export LESS_TERMCAP_us=$'\e[1;4;31m'   # begin underline
+export LESS_TERMCAP_ue=$'\e[0m'        # end underline
 
 #: Completion
 setopt hash_list_all # on cmp ensures correction but may be slow
@@ -92,63 +96,6 @@ zinit pack for ls_colors
 zi ice lucid wait'3'
 zi light zdharma-continuum/fast-syntax-highlighting
 
-
-#: KEYBINDS
-# disable vi-mode (it sucks, open line in vim with A-n)
-bindkey -v
-
-autoload edit-command-line
-zle -N edit-command-line
-bindkey '\ee' edit-command-line
-
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'l' vi-forward-char
-
-# plugin wont work without vi-mode, so I turn vi-mode off and paste plugin here
-fancy-ctrl-z () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line -w
-  else
-    zle push-input -w
-    zle clear-screen -w
-  fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
-
-#: fzf integration
-if command -v fd &>/dev/null; then
-    export FZF_CTRL_T_COMMAND="fd --type f --hidden --follow --max-depth 4"
-    export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --max-depth 4"
-fi
-
-if command -v fzf &>/dev/null; then
-    if [[ -e "$XDG_DATA_HOME/fzf_init.zsh" ]]; then
-        source "$XDG_DATA_HOME/fzf_init.zsh" 
-        bindkey '^j' fzf-file-widget
-        bindkey '^g' fzf-cd-widget
-    else
-        fzf --zsh >"$XDG_DATA_HOME/fzf_init.zsh"
-    fi
-fi
-
-#: yazi
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -n "$cwd" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
-
-
-bindkey -s '^t' "tmux a || tmux new^M"
-
 [ -f "$XDG_CONFIG_HOME/shell/aliasrc" ] && source $XDG_CONFIG_HOME/shell/aliasrc
 [ -f "$XDG_CONFIG_HOME/zsh/dirs.zsh" ]  && source $XDG_CONFIG_HOME/zsh/dirs.zsh
-[ -f "$XDG_CONFIG_HOME/zsh/widget.zsh" ]  && source $XDG_CONFIG_HOME/zsh/widget.zsh
-
-export PATH="$PATH:/opt/nanobrew/prefix/bin"
+[ -f "$XDG_CONFIG_HOME/zsh/binds.zsh" ]  && source $XDG_CONFIG_HOME/zsh/binds.zsh
