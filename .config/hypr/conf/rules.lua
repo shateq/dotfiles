@@ -34,6 +34,7 @@ hl.workspace_rule({
 -----------------
 ---- WINDOWS ----
 --- https://wiki.hypr.land/Configuring/Basics/Window-Rules/
+hl.window_rule({ match = { class = "brave-browser" }, workspace = "1 silent" })
 
 -- dim with the dim tag (SUPER+D)
 hl.window_rule({ opacity = 0.6, match = { tag = "dimmer" } })

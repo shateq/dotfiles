@@ -2,10 +2,12 @@ local mainMod     = "SUPER"
 ---------------------
 ---- MY PROGRAMS ----
 local terminal    = "kitty"
-local fileManager = terminal .. " -e yazi"
+local fileManager = "foot yazi"
+local iCal        = "foot ikhal"
 --
 local menu        = "tofi-drun | xargs -I {} hyprctl dispatch 'hl.dsp.exec_cmd(\"{}\")'"
 local calc        = "speedcrunch"
+local runMenu     = "fuzzel"
 ---------------------
 ------ HELPERS ------
 local bindel      = function(key, cmd)
@@ -29,6 +31,8 @@ map_exec("Return", terminal)
 -- hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 map_exec("Space", menu)
 map_exec("E", fileManager)
+map_exec("X", runMenu)
+map_exec("C", iCal)
 map_exec("ALT + C", "hyprpicker")
 map_exec("A", "brave")
 hl.bind("XF86Calculator", hl.dsp.exec_cmd(calc))
