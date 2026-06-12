@@ -7,7 +7,6 @@ local iCal        = "foot ikhal"
 --
 local menu        = "tofi-drun | xargs -I {} hyprctl dispatch 'hl.dsp.exec_cmd(\"{}\")'"
 local calc        = "speedcrunch"
-local runMenu     = "fuzzel"
 ---------------------
 ------ HELPERS ------
 local bindel      = function(key, cmd)
@@ -31,9 +30,7 @@ map_exec("Return", terminal)
 -- hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 map_exec("Space", menu)
 map_exec("E", fileManager)
-map_exec("X", runMenu)
-map_exec("C", iCal)
-map_exec("ALT + C", "hyprpicker")
+map_exec("H", iCal)
 map_exec("A", "brave")
 hl.bind("XF86Calculator", hl.dsp.exec_cmd(calc))
 -- hl.bind(mainMod .. " + R", function() hl.dispatch(hl.dsp.workspace.rename({ workspace = "+0", name = name })) end)
@@ -131,6 +128,8 @@ end
 -- (scratchpad)
 hl.bind(mainMod .. " + Z", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.window.move({ workspace = "special:magic" }))
+-- (overlay)
+hl.bind(mainMod .. " + X", hl.dsp.workspace.toggle_special("overlay"))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -142,6 +141,7 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 hl.bind("Print", hl.dsp.exec_cmd("grim -g '$(slurp -d)' - | wl-copy"))
+
 -- Laptop multimedia keys for volume and LCD brightness
 bindel("XF86AudioRaiseVolume", "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")
 bindel("XF86AudioLowerVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")

@@ -31,6 +31,15 @@ hl.workspace_rule({
   gaps_out = 120
 })
 
+-- auto spawn foot for scratchpad
+hl.workspace_rule({
+  workspace = "special:overlay",
+  -- float = true,
+  gaps_out = 50
+})
+
+hl.window_rule({ match = { class = "KeePassXC" }, workspace = "special:overlay" })
+
 -----------------
 ---- WINDOWS ----
 --- https://wiki.hypr.land/Configuring/Basics/Window-Rules/
