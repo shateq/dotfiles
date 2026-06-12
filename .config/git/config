@@ -28,7 +28,7 @@
     defaultBranch = main
 
 [ghq]
-    root = ~/Projects/ghq
+    root = ~/.local/share/ghq
 
 [url "git@github.com:"]
     insteadOf = "gh:"
