@@ -3,8 +3,9 @@ local mainMod     = "SUPER"
 ---- MY PROGRAMS ----
 local terminal    = "kitty"
 local fileManager = "foot yazi"
-local iCal        = "foot ikhal"
---
+local calendar    = "foot ikhal"
+
+local locker      = "hyprlock"
 local menu        = "tofi-drun | xargs -I {} hyprctl dispatch 'hl.dsp.exec_cmd(\"{}\")'"
 local calc        = "speedcrunch"
 ---------------------
@@ -27,49 +28,46 @@ end
 ---------------------
 ---- KEYBINDINGS ----
 map_exec("Return", terminal)
--- hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 map_exec("Space", menu)
+map_exec("A", "$BROWSER")
+map_exec("B", calendar)
 map_exec("E", fileManager)
-map_exec("H", iCal)
-map_exec("A", "brave")
-hl.bind("XF86Calculator", hl.dsp.exec_cmd(calc))
+map_exec("ALT + Q", locker)
 -- hl.bind(mainMod .. " + R", function() hl.dispatch(hl.dsp.workspace.rename({ workspace = "+0", name = name })) end)
 
 -- universa/ Clipboard
 map_exec("ALT + V", "cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy")
+hl.bind(mainMod .. " + CTRL + ALT +  V", function()
+  hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" })
+  hl.notification.create({ text = "Wiped clipboard history", timeout = 2000, font_size = 16 })
+end)
 hl.bind(mainMod .. " + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" }))
 hl.bind(mainMod .. " + V", hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" }))
 -- hl.bind(mainMod .. " + X", hl.dsp.send_shortcut({ mods = "CTRL", key = "X" }))
 
-
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + ALT + Q",
+hl.bind(mainMod .. " + ALT + BackSpace",
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 
 hl.bind(mainMod .. " + SHIFT + space", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+-- xmonad fullscreen
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.window.tag({ tag = "dimmer" }))
 
 -- Alt TAB
 hl.bind("ALT + Tab", hl.dsp.exec_cmd("rofi -show window"));
 hl.bind(mainMod .. " + Tab", hl.dsp.focus({ last = true }));
--- hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.window.move({ last = true }));
+-- banger
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.window.move({ workspace = "previous" }));
 
---- MONITORS
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.focus({ monitor = "r" }))
-hl.bind(mainMod .. " + CTRL + H", hl.dsp.focus({ monitor = "l" }))
-hl.bind(mainMod .. " + CTRL + SHIFT + L", hl.dsp.window.move({ monitor = "r" }))
-hl.bind(mainMod .. " + CTRL + SHIFT + H", hl.dsp.window.move({ monitor = "l" }))
-
--- not work
-hl.bind(mainMod .. " + CTRL + SHIFT + X", hl.dsp.workspace.swap_monitors({ monitor1 = "r", monitor2 = "l" }));
 --------------
 --- Layout ---
 -- hl.bind(mainMod .. " + SHIFT + T", function() hl.config({ general = { layout = "dwindle" } }) end)
 -- hl.bind(mainMod .. " + G", function() hl.config({ general = { layout = "grid" } }) end)
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.window.pseudo())
 
-hl.bind(mainMod .. " + J", function()
+hl.bind(mainMod .. " + G", function()
   local layout = hl.get_active_workspace().tiled_layout
   if layout == "master" then
     hl.dispatch(hl.dsp.layout("rollnext"))
@@ -78,7 +76,7 @@ hl.bind(mainMod .. " + J", function()
   end
 end)
 
-hl.bind(mainMod .. " + SHIFT + J", function()
+hl.bind(mainMod .. " + SHIFT + G", function()
   local layout = hl.get_active_workspace().tiled_layout
   if layout == "master" then
     hl.dispatch(hl.dsp.layout("rollprev"))
@@ -115,6 +113,7 @@ local focus = {
 }
 for key, value in pairs(focus) do
   hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ direction = value }))
+  hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ direction = value }))
 end
 
 -- Switch workspaces with mainMod + [0-9]
@@ -123,7 +122,17 @@ for i = 1, 10 do
   local key = i % 10
   hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
   hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+  hl.bind(mainMod .. " + ALT + " .. key, hl.dsp.window.move({ workspace = i, follow = false }))
 end
+
+--- MONITORS
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.focus({ monitor = "r" }))
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.focus({ monitor = "l" }))
+hl.bind(mainMod .. " + CTRL + SHIFT + L", hl.dsp.window.move({ monitor = "r" }))
+hl.bind(mainMod .. " + CTRL + SHIFT + H", hl.dsp.window.move({ monitor = "l" }))
+
+-- not work
+hl.bind(mainMod .. " + CTRL + SHIFT + X", hl.dsp.workspace.swap_monitors({ monitor1 = "r", monitor2 = "l" }));
 
 -- (scratchpad)
 hl.bind(mainMod .. " + Z", hl.dsp.workspace.toggle_special("magic"))
@@ -139,8 +148,13 @@ hl.bind(mainMod .. " + P", hl.dsp.focus({ workspace = "e-1" }))
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
-
-hl.bind("Print", hl.dsp.exec_cmd("grim -g '$(slurp -d)' - | wl-copy"))
+--------------
+--- Extras ---
+hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
+-- laptop specific
+hl.bind("Scroll_Lock", hl.dsp.exec_cmd(locker))
+hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd(menu))
+hl.bind("XF86Calculator", hl.dsp.exec_cmd(calc))
 
 -- Laptop multimedia keys for volume and LCD brightness
 bindel("XF86AudioRaiseVolume", "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")

@@ -10,10 +10,10 @@ alias \
 0="clear" \
 g="git" \
 v="$EDITOR" \
+loc="locate -i" \
 mkd="mkdir -pv" \
 rmd="rm -r" \
 sln="ln -s" \
-lsbc="lsblk | bat -p -l conf" \
 ls="ls -pt --color=always" \
 ll="ls -AhlX --color=always" \
 lt="ls -RU --color=always" \
@@ -25,6 +25,7 @@ G="| grep" \
 L="| less" \
 
 command -v "soffice" >/dev/null && alias doc2pdf="soffice --convert-to pdf"
+command -v "qrencode" >/dev/null && alias qr="wl-paste | qrencode -t UTF8"
 #: linux only
 command -v "xdg-open" >/dev/null && alias open="setsid xdg-open"
 command -v "dragon-drop" >/dev/null && alias drag="dragon-drop -x"

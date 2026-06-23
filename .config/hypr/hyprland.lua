@@ -49,6 +49,8 @@ hl.gesture({
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 hl.env("XCURSOR_SIZE", "18")
 hl.env("HYPRCURSOR_SIZE", "18")
+
+hl.env("GTK_USE_PORTAL", "1")
 -----------------------
 ----- PERMISSIONS -----
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
