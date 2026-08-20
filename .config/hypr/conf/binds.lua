@@ -6,7 +6,8 @@ local fileManager = "foot yazi"
 local calendar    = "foot ikhal"
 
 local locker      = "hyprlock"
-local menu        = "tofi-drun | xargs -I {} hyprctl dispatch 'hl.dsp.exec_cmd(\"{}\")'"
+local menu = "fuzzel"
+-- local menu        = "tofi-drun | xargs -I {} hyprctl dispatch 'hl.dsp.exec_cmd(\"{}\")'"
 local calc        = "speedcrunch"
 ---------------------
 ------ HELPERS ------
@@ -33,6 +34,7 @@ map_exec("A", "$BROWSER")
 map_exec("B", calendar)
 map_exec("E", fileManager)
 map_exec("ALT + Q", locker)
+map_exec("ALT + B", "killall -SIGUSR1 waybar")
 -- hl.bind(mainMod .. " + R", function() hl.dispatch(hl.dsp.workspace.rename({ workspace = "+0", name = name })) end)
 
 -- universa/ Clipboard
@@ -174,3 +176,17 @@ binde("XF86AudioPrev", "playerctl previous")
 -- submap = clean
 -- bind = $mod, Escape, submap, reset
 -- submap = reset
+
+-- DICTATION subfeature
+-- local startDict = "nerd-dictation begin --simulate-input-tool WTYPE"
+-- local polDict   = "nerd-dictation begin --simulate-input-tool WTYPE --vosk-model-dir=$HOME/.config/nerd-dictation/polish"
+-- local stopDict  = "nerd-dictation end"
+--
+-- hl.bind(mainMod .. " + S", hl.dsp.submap("dictation"))
+-- map_exec(" + S", startDict)
+-- hl.bind(mainMod .. " + ALT + S", hl.dsp.submap("dictation"))
+-- map_exec("ALT + S", polDict)
+--
+-- hl.define_submap("dictation", "reset", function()
+--   hl.bind("catchall", hl.dsp.exec_cmd(stopDict))
+-- end)

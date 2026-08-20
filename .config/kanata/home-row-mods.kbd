@@ -4,11 +4,13 @@
 )
 
 (defsrc
-  a s d f j k l ;
+  a s d f j k l ; grv
 )
+
 (defvar
   tap-time 200
   hold-time 230
+  tap-dance-time 250
 )
 
 (defalias
@@ -21,11 +23,22 @@
   k (tap-hold $tap-time $hold-time k rsft)
   l (tap-hold $tap-time $hold-time l lalt)
   ; (tap-hold $tap-time $hold-time ; rmet)
+
+  to-none (tap-dance 250
+    (layer-toggle vanilla)
+  )
+
+  to-base (tap-dance 250
+    (layer-toggle base)
+  )
 )
 
 (deflayer base
   @a @s @d @f @j @k @l @;
+  @to-none
 )
 
 (deflayer vanilla
+  a s d f j k l ; 
+  @to-base
 )

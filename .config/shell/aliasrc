@@ -29,6 +29,7 @@ command -v "qrencode" >/dev/null && alias qr="wl-paste | qrencode -t UTF8"
 #: linux only
 command -v "xdg-open" >/dev/null && alias open="setsid xdg-open"
 command -v "dragon-drop" >/dev/null && alias drag="dragon-drop -x"
+command -v "imv" >/dev/null && alias nsxiv="imv"
 
 json-format() {
     jq '.' $1 | sponge $1

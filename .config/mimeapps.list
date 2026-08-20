@@ -16,7 +16,7 @@ x-scheme-handler/http=librewolf.desktop;brave-browser.desktop;
 x-scheme-handler/https=brave-browser.desktop;librewolf.desktop;
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop;
 x-scheme-handler/mailto=brave-browser.desktop;
-x-scheme-handler/discord=vesktop.desktop;
+x-scheme-handler/discord=vesktop.desktop
 inode/directory=yazi.desktop;
 
 [Added Associations]

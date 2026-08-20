@@ -1,7 +1,6 @@
 #!/bin/sh
 
 #: this file runs on login, it's for env variables only
-export PATH="$PATH:$(find -L ~/.local/bin -type d | paste -sd ':' -):$XDG_DATA_HOME/JetBrains/Toolbox/scripts"
 
 export EDITOR="nvim"
 export TERMINAL="kitty"
@@ -14,6 +13,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
+
+export PATH="$PATH:$(find -L ~/.local/bin -type d | paste -sd ':' -):$XDG_DATA_HOME/JetBrains/Toolbox/scripts"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_CACHE_HOME/history"
@@ -51,8 +52,3 @@ export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export _JAVA_AWT_WM_NONREPARENTING=1
-
-#:macos
-#export HOMEBREW_NO_ENV_HINTS=1
-#eval "$(/opt/homebrew/bin/brew shellenv)"
-#export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
